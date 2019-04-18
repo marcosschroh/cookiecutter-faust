@@ -61,7 +61,7 @@ Docker and Docker Compose
 -------------------------
 
 If `use_docker` option is `yes` a `Dockerfile` will be created.
-The `Dockerfile` is based on  `python:3.7-slim`. The example is [here]()
+The `Dockerfile` is based on  `python:3.7-slim`. The example is [here](https://github.com/marcosschroh/cookiecutter-faust/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/Dockerfile)
 
 If `include_docker_compose` option is `yes` the `docker-compose.yaml` will be created.
 

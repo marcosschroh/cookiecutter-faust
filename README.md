@@ -19,7 +19,7 @@ Let's pretend you want to create a Faust project called "super faust".
 
 First, install `Cookiecutter`.
 
-```bash
+```
 pip install "cookiecutter>=1.4.0"
 ```
 
@@ -71,6 +71,8 @@ Enter the project and take a look around:
 ```
 cd super_faust/
 ls
+
+CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml  run.sh  setup.cfg  setup.py  super_faust  wait_for_services.sh
 ```
 
 Create a git repo and push it there:
@@ -84,3 +86,9 @@ git push -u origin master
 ```
 
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
+
+Bonus
+-----
+
+If you choose `yes` to `include_page_view_tutorial` option
+you will have the app `page_views` running from the [tutorial](https://faust.readthedocs.io/en/latest/playbooks/pageviews.html)

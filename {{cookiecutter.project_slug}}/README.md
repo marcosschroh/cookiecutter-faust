@@ -14,6 +14,17 @@ Settings are created based on [local-settings](https://github.com/drgarcia1986/s
 
 The only settings required if the `{{cookiecutter.kafka_server_environment_variable}}` environment variable.
 
+```python
+SIMPLE_SETTINGS = {
+    'OVERRIDE_BY_ENV': True,
+    'CONFIGURE_LOGGING': True,
+    'REQUIRED_SETTINGS': ('{{cookiecutter.kafka_server_environment_variable}}',),
+}
+
+# The following variables can be ovirriden from ENV
+{{cookiecutter.kafka_server_environment_variable}} = "kafka://kafka:9092"
+```
+
 The settings also include a basic logging configuration:
 
 ```python

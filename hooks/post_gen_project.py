@@ -8,24 +8,17 @@ def remove_docker_files(file_names):
 
 
 def remove_page_view_tutorial():
-    shutil.rmtree('{{cookiecutter.project_slug}}/page_views')
+    shutil.rmtree("{{cookiecutter.project_slug}}/page_views")
 
 
 def main():
 
     docker_files = []
     if "{{ cookiecutter.include_docker_compose }}".lower() == "n":
-        docker_files = [
-            "docker-compose.yaml",
-            "wait_for_services.sh",
-            "Makefile",
-        ]
+        docker_files = ["docker-compose.yaml", "wait_for_services.sh", "Makefile"]
 
     if "{{ cookiecutter.use_docker }}".lower() == "n":
-        docker_files.extend([
-            "Dockerfile",
-            ".dockerignore",
-        ])
+        docker_files.extend(["Dockerfile", ".dockerignore"])
 
     remove_docker_files(docker_files)
 

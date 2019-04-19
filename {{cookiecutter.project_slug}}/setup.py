@@ -11,16 +11,14 @@ requires = [
 ]
 
 setup(
-    name='{{cookiecutter.project_name}}',
-    version='{{cookiecutter.version}}',
-    description='{{cookiecutter.description}}',
-    long_description='''{{cookiecutter.description}}''',
-    classifiers=[
-        "Programming Language :: Python",
-    ],
-    author='{{cookiecutter.author_name}}',
-    author_email='{{cookiecutter.author_email}}',
-    url='',
+    name="{{cookiecutter.project_name}}",
+    version="{{cookiecutter.version}}",
+    description="{{cookiecutter.description}}",
+    long_description="""{{cookiecutter.description}}""",
+    classifiers=["Programming Language :: Python"],
+    author="{{cookiecutter.author_name}}",
+    author_email="{{cookiecutter.author_email}}",
+    url="",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
@@ -29,8 +27,8 @@ setup(
     setup_requires=[],
     dependency_links=[],
     entry_points={
-        'console_scripts': [
-            '{{cookiecutter.project_slug}} = {{cookiecutter.project_slug}}.app:main',
-        ],
+        "console_scripts": [
+            "{{cookiecutter.project_slug}} = {{cookiecutter.project_slug}}.app:main"
+        ]
     },
 )

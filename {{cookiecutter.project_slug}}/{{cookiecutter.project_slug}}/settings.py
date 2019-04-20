@@ -5,7 +5,7 @@ SIMPLE_SETTINGS = {
 }
 
 # The following variables can be ovirriden from ENV
-{{cookiecutter.kafka_server_environment_variable}} = "kafka://kafka:9092"  # noqa: E999
+{{cookiecutter.kafka_server_environment_variable}} = "kafka://kafka:9092"
 # SCHEMA_REGISTRY_URL = "http://schema-registry:8081"
 
 LOGGING = {

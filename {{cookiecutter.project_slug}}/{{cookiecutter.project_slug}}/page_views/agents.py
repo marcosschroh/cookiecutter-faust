@@ -1,6 +1,6 @@
 import logging
 
-from {{cookiecutter.project_slug}}.app import app  # noqa: E999
+from {{cookiecutter.project_slug}}.app import app
 
 from {{cookiecutter.project_slug}}.page_views.models import PageView
 

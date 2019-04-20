@@ -1,6 +1,8 @@
 Cookiecutter Faust
 ===================
 
+[![Build Status](https://travis-ci.org/marcosschroh/cookiecutter-faust.svg?branch=master)](https://travis-ci.org/marcosschroh/cookiecutter-faust)
+
 Features
 ---------
 

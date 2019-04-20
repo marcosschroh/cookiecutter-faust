@@ -1,0 +1,14 @@
+# Config file for automatic testing at travis-ci.org
+language: python
+
+python: 3.6
+
+# command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
+install: pip install tox
+
+matrix:
+  include:
+    - name: Tox Test
+      script: tox -e py36
+    - name: Black template
+      script: tox -e black

@@ -14,9 +14,9 @@
       "Not open source"
     ],
     "use_pycharm": "n",
-    "use_docker": "n",
-    "include_docker_compose": "n",
-    "include_page_view_tutorial": "n",
+    "use_docker": "y",
+    "include_docker_compose": "y",
+    "include_page_view_tutorial": "y",
     "worker_port": 6066,
     "kafka_server_environment_variable": "KAFKA_BOOTSTRAP_SERVER",
     "faust_loglevel": [

@@ -9,6 +9,7 @@ def remove_docker_files(file_names):
 
 def remove_page_view_tutorial():
     shutil.rmtree("{{cookiecutter.project_slug}}/page_views")
+    os.remove("tests/test_page_views.py")
 
 
 def main():

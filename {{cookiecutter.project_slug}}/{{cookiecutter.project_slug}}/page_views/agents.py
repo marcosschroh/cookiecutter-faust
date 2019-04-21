@@ -16,3 +16,5 @@ async def count_page_views(views):
     async for view in views.group_by(PageView.id):
         page_views[view.id] += 1
         logger.info(f"Event received. Page view Id {view.id}")
+
+        yield view

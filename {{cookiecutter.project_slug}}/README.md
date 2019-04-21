@@ -98,6 +98,15 @@ Useful ENVIRONMENT variables that you may change:
 
 {% endif %}
 
+Tests
+-----
+
+Run tests with `tox`
+
+```
+tox
+```
+
 Type checks
 -----------
 

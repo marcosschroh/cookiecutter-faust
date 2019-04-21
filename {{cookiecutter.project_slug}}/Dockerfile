@@ -1,6 +1,6 @@
 FROM python:3.7-slim
-
-RUN echo 'deb http://http.debian.net/debian jessie-backports main' >> /etc/apt/sources.list \
+    
+RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends apt-utils
 

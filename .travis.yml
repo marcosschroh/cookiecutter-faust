@@ -3,11 +3,28 @@ dist: xenial   # required for Python >= 3.7
 
 language: python
 
-python:
-  - 3.6
-  - 3.7
+services:
+  - docker
+
+before_install:
+  - docker-compose -v
+  - docker -v
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install tox-travis
+# Because we run the test with pytest==4.4.1 we need pluggy>=0.9
+# Would be easier to run travis with tox but is not trivial. 
+install: pip install -r requirements.txt
 
-script: tox
+matrix:
+  include:	
+    - name: Test Python 3.6
+      python: 3.6  
+      script: tox -e py36
+    - name: Test Python 3.7
+      python: 3.7
+      script: tox -e py37
+    - name: Black template	
+      script: black --check hooks tests setup.py
+    - name: Docker image
+      script: ./tests/test_docker.sh
+

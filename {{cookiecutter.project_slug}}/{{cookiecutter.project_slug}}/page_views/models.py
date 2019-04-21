@@ -2,5 +2,5 @@ import faust
 
 
 class PageView(faust.Record):
-    id: int
+    id: str
     user: str

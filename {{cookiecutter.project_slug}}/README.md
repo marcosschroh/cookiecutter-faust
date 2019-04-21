@@ -101,7 +101,7 @@ Useful ENVIRONMENT variables that you may change:
 Tests
 -----
 
-Run tests with `tox`
+Run tests with `tox`. Make sure that you have installed it.
 
 ```
 tox

@@ -20,10 +20,10 @@
     "worker_port": 6066,
     "kafka_server_environment_variable": "KAFKA_BOOTSTRAP_SERVER",
     "faust_loglevel": [
+      "INFO",
       "CRITICAL",
       "ERROR",
       "WARNING",
-      "INFO",
       "DEBUG",
       "NOTSET"
     ]

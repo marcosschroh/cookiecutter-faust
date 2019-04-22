@@ -12,14 +12,14 @@ RUN apt-get install -y netcat && apt-get autoremove -y
 # Create unprivileged user
 RUN adduser --disabled-password --gecos '' myuser
 
-WORKDIR /{{cookiecutter.project_slug}}/
+WORKDIR /repo_root/
 
 # As configured in docker-compose.yaml the copy built in the image is replaced
 # with a volume mount of the host directory. The volume is mounted at run time
 # but not build time.
-COPY . /{{cookiecutter.project_slug}}
+COPY . /repo_root
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /repo_root/requirements.txt
 
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["/repo_root/run.sh"]
 

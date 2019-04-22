@@ -20,6 +20,10 @@ services:
     ports:
       - "8084:80"
       - "8000:8000"
+      - "{{cookiecutter.worker_port}}:{{cookiecutter.worker_port}}"
+    volumes:
+      # Overlays the COPY made by Dockerfile.
+      - ./:{{cookiecutter.project_slug}}
   zookeeper:
     image: "confluentinc/cp-zookeeper"
     hostname: zookeeper

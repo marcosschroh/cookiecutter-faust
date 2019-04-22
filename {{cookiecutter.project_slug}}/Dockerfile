@@ -14,9 +14,12 @@ RUN adduser --disabled-password --gecos '' myuser
 
 WORKDIR /{{cookiecutter.project_slug}}/
 
+# As configured in docker-compose.yaml the copy built in the image is replaced
+# with a volume mount of the host directory. The volume is mounted at run time
+# but not build time.
 COPY . /{{cookiecutter.project_slug}}
 
-RUN pip3 install -e .
+RUN pip3 -r requirements.txt
 
 ENTRYPOINT ["./run.sh"]
 

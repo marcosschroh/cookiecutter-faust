@@ -1,14 +1,16 @@
+from pathlib import Path
 from setuptools import setup, find_packages
+from typing import List
 
-requires = [
-    "avro-python3",
-    "colorlog==3.1.4",
-    "fastavro",
-    "faust==1.5.4",
-    "robinhood-aiokafka==1.0.2",
-    "requests",
-    "simple-settings==0.16.0",
-]
+
+def parse_requirements(filename: str) -> List[str]:
+    """Return requirements from requirements file."""
+    # Ref: https://stackoverflow.com/a/42033122/
+    requirements = (Path(__file__).parent / filename).read_text().strip().split('\n')
+    requirements = [r.strip() for r in requirements]
+    requirements = [r for r in sorted(requirements) if r and not r.startswith('#')]
+    return requirements
+
 
 setup(
     name="{{cookiecutter.project_name}}",
@@ -22,7 +24,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
-    install_requires=requires,
+    install_requires=parse_requirements("requirements.txt"),
     tests_require=[],
     setup_requires=[],
     dependency_links=[],

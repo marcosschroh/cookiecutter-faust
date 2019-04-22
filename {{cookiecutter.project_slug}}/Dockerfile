@@ -19,7 +19,7 @@ WORKDIR /{{cookiecutter.project_slug}}/
 # but not build time.
 COPY . /{{cookiecutter.project_slug}}
 
-RUN pip3 -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 ENTRYPOINT ["./run.sh"]
 

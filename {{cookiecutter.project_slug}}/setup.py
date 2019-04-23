@@ -18,7 +18,7 @@ setup(
     classifiers=["Programming Language :: Python"],
     author="{{cookiecutter.author_name}}",
     author_email="{{cookiecutter.author_email}}",
-    url="",
+    url="https://github.com/marcosschroh/cookiecutter-faust",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
@@ -29,6 +29,12 @@ setup(
     entry_points={
         "console_scripts": [
             "{{cookiecutter.project_slug}} = {{cookiecutter.project_slug}}.app:main"
-        ]
+        ],
+        {% if cookiecutter.include_codec_example == "y" %}
+        "faust.codecs": [
+            "msgpack_codec = {{cookiecutter.project_slug}}.codecs.codec:msgpack",
+            # add entries here to add more custom codecs
+        ],
+        {% endif %}
     },
 )

@@ -12,6 +12,10 @@ def remove_page_view_tutorial():
     os.remove("tests/test_page_views.py")
 
 
+def remove_codec():
+    shutil.rmtree("{{cookiecutter.project_slug}}/codecs")
+
+
 def main():
 
     docker_files = []
@@ -25,6 +29,9 @@ def main():
 
     if "{{ cookiecutter.include_page_view_tutorial }}".lower() == "n":
         remove_page_view_tutorial()
+
+    if "{{ cookiecutter.include_codec_example }}".lower() == "n":
+        remove_codec()
 
 
 if __name__ == "__main__":

@@ -16,6 +16,3 @@ until nc -vz ${SCHEMA_REGISTRY_SERVER} ${SCHEMA_REGISTRY_SERVER_PORT}; do
 done
 
 >&2 echo "Schema Registry is up - executing command"
-
-echo "Executing command ${cmd}"
-exec $cmd

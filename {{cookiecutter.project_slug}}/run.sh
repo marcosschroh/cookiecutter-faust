@@ -8,6 +8,8 @@ export SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings
 # dependencies added since the image was last built.
 pip3 install -e /repo_root_mount
 
+./wait_for_services.sh
+
 # Run the application with exec, replacing this shell script in the same
 # process. Exec is used so dumb-init can easily forward signals to the
 # application.

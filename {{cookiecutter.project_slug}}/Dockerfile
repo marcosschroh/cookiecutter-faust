@@ -22,11 +22,6 @@ COPY . /repo_root_image
 
 RUN pip3 install -r /repo_root_image/requirements.txt
 
-VOLUME /repo_root_mount
-
-WORKDIR /repo_root_mount
-
 # https://github.com/Yelp/dumb-init#using-a-shell-for-pre-start-hooks
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
-# CMD ["bash", "-c", "pip3 install -e . && ./wait_for_services.sh && exec {{cookiecutter.project_slug}} worker --web-port=$WORKER_PORT"]
 CMD ["/repo_root_mount/run.sh"]

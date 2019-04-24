@@ -44,6 +44,9 @@ def context():
     KAFKA_SERVER,
     ids=lambda yn: f"kafka_Server:{yn}",
 )
+@pytest.mark.parametrize(
+    "include_codec_example", YN_CHOICES, ids=lambda yn: f"page_tutorial:{yn}"
+)
 def context_combination(
     use_docker,
     include_docker_compose,
@@ -51,6 +54,7 @@ def context_combination(
     faust_loglevel,
     worker_port,
     kafka_server_environment_variable,
+    include_codec_example,
 ):
     """Fixture that parametrize the function where it's used."""
     return {
@@ -60,6 +64,7 @@ def context_combination(
         "faust_loglevel": faust_loglevel,
         "worker_port": worker_port,
         "kafka_server_environment_variable": kafka_server_environment_variable,
+        "include_codec_example": include_codec_example,
     }
 
 

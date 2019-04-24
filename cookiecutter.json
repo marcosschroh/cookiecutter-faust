@@ -19,6 +19,7 @@
     "include_page_view_tutorial": "y",
     "worker_port": 6066,
     "kafka_server_environment_variable": "KAFKA_BOOTSTRAP_SERVER",
+    "include_codec_example": "y",
     "faust_loglevel": [
       "INFO",
       "CRITICAL",

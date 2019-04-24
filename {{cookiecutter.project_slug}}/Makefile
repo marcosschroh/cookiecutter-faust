@@ -44,5 +44,5 @@ build:
 	docker build -t {{cookiecutter.project_slug}} .
 
 run:
-	docker run {{cookiecutter.project_slug}}
+	docker run -v ./:/repo_root_mount {{cookiecutter.project_slug}}
 {% endif %}

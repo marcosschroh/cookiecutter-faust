@@ -3,13 +3,12 @@ services:
   {{cookiecutter.project_slug}}:
     tty: true
     build: .
-    entrypoint: "./wait_for_services.sh"
-    command: "./run.sh"
     depends_on:
       - zookeeper
       - kafka
-      - "schema-registry"
+      - schema-registry
     environment:
+      - SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings
       - WORKER_PORT={{cookiecutter.worker_port}}
       - {{cookiecutter.kafka_server_environment_variable}}=kafka://kafka:9092
       - KAFKA_BOOSTRAP_SERVER_NAME=kafka
@@ -22,8 +21,7 @@ services:
       - "8000:8000"
       - "{{cookiecutter.worker_port}}:{{cookiecutter.worker_port}}"
     volumes:
-      # Overlays the COPY made by Dockerfile.
-      - ./:/repo_root
+      - ./:/repo_root_mount
   zookeeper:
     image: "confluentinc/cp-zookeeper"
     hostname: zookeeper

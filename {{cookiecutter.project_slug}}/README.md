@@ -60,7 +60,7 @@ Basic Commands
 * Stop and remove containers: `make clean`
 * List topics: `make list-topics`
 * Send events to page_view topic/agent: `make send-page-view-event payload='{"id": "foo", "user": "bar"}'`
-  
+* Restart the application, leaving kafka up: `make restart`
 {% elif cookiecutter.use_docker == "y" %}
 * Build applicattion: `make build`
 * Run the application: `make run`

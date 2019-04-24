@@ -5,7 +5,7 @@
 
 from setuptools import setup
 
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 
 with open("README.md") as readme_file:
     long_description = readme_file.read()
@@ -17,7 +17,7 @@ setup(
     long_description=long_description,
     author="Marcos Schroh",
     author_email="schrohm@gmail.com",
-    url="",
+    url="https://github.com/marcosschroh/cookiecutter-faust",
     download_url="",
     packages=[],
     include_package_data=True,

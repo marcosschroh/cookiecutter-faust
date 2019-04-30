@@ -4,4 +4,5 @@ fastavro
 faust>=1.5.4
 robinhood-aiokafka>=1.0.2
 requests
-simple-settings>=0.16.0
+simple-settings>=0.16.0{% if cookiecutter.include_codec_example == "y" %}
+msgpack{% endif %}

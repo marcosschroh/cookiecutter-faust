@@ -20,7 +20,7 @@ setup(
     classifiers=["Programming Language :: Python"],
     author="{{cookiecutter.author_name}}",
     author_email="{{cookiecutter.author_email}}",
-    url="https://github.com/marcosschroh/cookiecutter-faust",
+    url="",
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,

@@ -8,6 +8,9 @@ requires = [
     "robinhood-aiokafka==1.0.2",
     "requests",
     "simple-settings==0.16.0",
+    {% if cookiecutter.include_codec_example.lower() == "y" %}
+    "msgpack==0.6.1",
+    {% endif %}
 ]
 
 setup(
@@ -30,7 +33,7 @@ setup(
         "console_scripts": [
             "{{cookiecutter.project_slug}} = {{cookiecutter.project_slug}}.app:main"
         ],
-        {% if cookiecutter.include_codec_example == "y" %}
+        {% if cookiecutter.include_codec_example.lower() == "y" %}
         "faust.codecs": [
             "msgpack_codec = {{cookiecutter.project_slug}}.codecs.codec:msgpack",
             # add entries here to add more custom codecs

@@ -128,6 +128,7 @@ include_docker_compose [n]: y
 include_page_view_tutorial [n]: y
 worker_port [6066]:
 kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
+include_codec_example [y]:
 Select faust_loglevel:
 1 - CRITICAL
 2 - ERROR

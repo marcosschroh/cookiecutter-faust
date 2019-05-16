@@ -2,6 +2,8 @@ Cookiecutter Faust
 ===================
 
 [![Build Status](https://travis-ci.org/marcosschroh/cookiecutter-faust.svg?branch=master)](https://travis-ci.org/marcosschroh/cookiecutter-faust)
+[![GitHub license](https://img.shields.io/github/license/marcosschroh/cookiecutter-faust.svg)](https://github.com/marcosschroh/cookiecutter-faust/blob/feature/add-license-and-remove-network-after-clean/LICENSE)
+
 
 Features
 ---------

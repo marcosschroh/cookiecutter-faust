@@ -24,12 +24,15 @@ remove:
 	# Try this if this fails: docker rm -f $(docker ps -a -q)
 	docker-compose rm --force -v
 
+remove-network:
+	docker network rm {{cookiecutter.project_slug}}_default
+
 stop:
 	docker-compose stop
 
 run-dev: build run
 
-clean: stop remove
+clean: stop remove remove-network
 
 # Kafka related
 list-topics:

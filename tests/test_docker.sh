@@ -14,5 +14,9 @@ cd .cache/docker
 cookiecutter ../../ --no-input --overwrite-if-exists $@
 cd my_awesome_faust_project
 
+docker-compose stop
+echo yes | docker-compose rm
+docker network rm my_awesome_faust_project_default | true
+
 # run the project's. Install tox and run the tests.
 docker-compose run -e SIMPLE_SETTINGS=my_awesome_faust_project.settings my_awesome_faust_project pip install tox; tox

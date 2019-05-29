@@ -8,14 +8,16 @@ until nc -vz ${KAFKA_BOOSTRAP_SERVER_NAME} ${KAFKA_BOOSTRAP_SERVER_PORT}; do
   sleep 2
 done
 
->&2 echo "Kafka is up - executing command"
+>&2 echo "Kafka is up"
 
+{% if cookiecutter.include_schema_registry.lower() == "y" %}
 until nc -vz ${SCHEMA_REGISTRY_SERVER} ${SCHEMA_REGISTRY_SERVER_PORT}; do
   >&2 echo "Waiting for Schema Registry to be ready... - sleeping"
   sleep 2
 done
 
->&2 echo "Schema Registry is up - executing command"
+>&2 echo "Schema Registry is up"
+{% endif %}
 
 echo "Executing command ${cmd}"
 exec $cmd

@@ -8,15 +8,19 @@ services:
     depends_on:
       - zookeeper
       - kafka
+      {% if cookiecutter.include_schema_registry.lower() == "y" %}
       - "schema-registry"
+      {% endif %}
     environment:
       - WORKER_PORT={{cookiecutter.worker_port}}
       - {{cookiecutter.kafka_server_environment_variable}}=kafka://kafka:9092
       - KAFKA_BOOSTRAP_SERVER_NAME=kafka
       - KAFKA_BOOSTRAP_SERVER_PORT=9092
+      {% if cookiecutter.include_schema_registry.lower() == "y" %}
       - SCHEMA_REGISTRY_URL=http://schema-registry:8081
       - SCHEMA_REGISTRY_SERVER=schema-registry
       - SCHEMA_REGISTRY_SERVER_PORT=8081
+      {% endif %}
     ports:
       - "8084:80"
       - "8000:8000"
@@ -42,6 +46,7 @@ services:
       - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT_HOST://localhost:29092,PLAINTEXT://kafka:9092
       - KAFKA_BROKER_ID=1
+  {% if cookiecutter.include_schema_registry.lower() == "y" %}
   schema-registry:
     image: confluentinc/cp-schema-registry
     hostname: schema-registry
@@ -55,3 +60,4 @@ services:
       - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:32181
       - SCHEMA_REGISTRY_HOST_NAME=schema-registry
       - SCHEMA_REGISTRY_DEBUG=true
+  {% endif %}

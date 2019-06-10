@@ -8,7 +8,7 @@ Cookiecutter Faust
 Features
 ---------
 
-* For Faust 1.5.4
+* For Faust 1.7.0
 * Python 3.7
 * Docker and docker-compose support
 * Useful commands included in Makefile
@@ -139,6 +139,7 @@ Select faust_loglevel:
 5 - DEBUG
 6 - NOTSET
 Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
+include_schema_registry [y]:
 ```
 
 Enter the project and take a look around:

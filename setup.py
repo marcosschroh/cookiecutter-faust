@@ -5,7 +5,7 @@
 
 from setuptools import setup
 
-__version__ = "0.6.0"
+__version__ = "0.6.1"
 
 with open("README.md") as readme_file:
     long_description = readme_file.read()
@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     license="GPLv3",
     classifiers=[
-        "Framework :: Faust :: 1.5.4",
+        "Framework :: Faust :: 1.7.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",

@@ -28,5 +28,5 @@
       "DEBUG",
       "NOTSET"
     ],
-    "include_schema_registry": "n"
+    "include_schema_registry": "y"
 }

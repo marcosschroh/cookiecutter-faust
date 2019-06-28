@@ -62,6 +62,7 @@ def context_combination(
     kafka_server_environment_variable,
     include_codec_example,
     include_schema_registry,
+    include_rocksdb
 ):
     """Fixture that parametrize the function where it's used."""
     return {

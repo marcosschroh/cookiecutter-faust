@@ -28,7 +28,6 @@ RUN rm -rf /tmp/rocksdb
 ENV CGO_CFLAGS  "-I/usr/local/include"
 ENV CGO_LDFLAGS "-L/usr/local/lib -lrocksdb -lstdc++ -lm -lz -lbz2 -lsnappy"
 ENV LD_LIBRARY_PATH "/usr/local/lib"
-ENV STORE_URI=rocksdb://
 {% endif %}
 
 WORKDIR /{{cookiecutter.project_slug}}/

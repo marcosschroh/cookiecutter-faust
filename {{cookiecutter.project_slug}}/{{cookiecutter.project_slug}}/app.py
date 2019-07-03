@@ -11,7 +11,7 @@ app = faust.App(
     origin="{{cookiecutter.project_slug}}",
     id="1",
     broker=settings.{{cookiecutter.kafka_server_environment_variable}},
-    store=os.environ.get('STORE_URI', 'memory://'),
+    store=settings.STORE_URI,
     logging_config=dictConfig(settings.LOGGING),
 )
 

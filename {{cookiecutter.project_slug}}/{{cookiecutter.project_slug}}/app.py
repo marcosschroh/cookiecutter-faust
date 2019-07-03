@@ -1,3 +1,4 @@
+import os
 import faust
 
 from simple_settings import settings
@@ -9,7 +10,8 @@ app = faust.App(
     autodiscover=True,
     origin="{{cookiecutter.project_slug}}",
     id="1",
-    broker=settings.{{cookiecutter.kafka_server_environment_variable}}, 
+    broker=settings.{{cookiecutter.kafka_server_environment_variable}},
+    store=settings.STORE_URI,
     logging_config=dictConfig(settings.LOGGING),
 )
 

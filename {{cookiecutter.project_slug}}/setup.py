@@ -3,8 +3,9 @@ from setuptools import setup, find_packages
 requires = [
     "avro-python3",
     "colorlog==3.1.4",
-    "fastavro",
-    "faust==1.7.0",
+    "fastavro",{% if cookiecutter.include_rocksdb.lower() == "y" %}
+    "faust[rocksdb]==1.7.0",{% else %}
+    "faust==1.7.0",{% endif %}
     "robinhood-aiokafka==1.0.3",
     "requests==2.22.0",
     "simple-settings==0.16.0",{% if cookiecutter.include_codec_example.lower() == "y" %}

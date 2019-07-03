@@ -34,9 +34,11 @@ SIMPLE_SETTINGS = {
 KAFKA_BOOTSTRAP_SERVER = "kafka://kafka:9092"
 ```
 
-The settings also include a basic logging configuration:
+The settings also include a basic logging and store configuration:
 
 ```python
+STORE_URI = "rocksdb://" # If rocksdb is  disabled is "memory://"
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -140,6 +142,7 @@ Select faust_loglevel:
 6 - NOTSET
 Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
 include_schema_registry [y]:
+include_rocksdb [y]:
 ```
 
 Enter the project and take a look around:

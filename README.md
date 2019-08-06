@@ -166,6 +166,19 @@ git push -u origin master
 
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
 
+Useful Commands:
+----------------
+
+|Command|Description| Default values|Example|
+|-------|------------|--------------|-------|
+| `make run-dev`      | Run the application          |      ---        | |
+| `make clean`      |  Clean containers and network         |     ---         | |
+| `make bash service={the-service}`      |  Access to container         |   service={project-name}           | `make bash` |
+| `make list-topics`      |      List topics     |    ---          | |
+| `make create-topic replication-factor={replication-factor} --partitions={number-of-partitions topic-name={your-topic-name}`      |  Create topic         |  replication-factor=1 partitions=1.           |  `make create-topic topic-name=test-topic`|
+| `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
+| `make list-agents`| List faust agents| --- | |
+
 Bonus
 -----
 

@@ -4,7 +4,7 @@ from {{cookiecutter.project_slug}}.app import app
 
 from {{cookiecutter.project_slug}}.page_views.models import PageView
 
-page_view_topic = app.topic("page_views", value_type=PageView)
+page_view_topic = app.topic("page_views", value_type=PageView, internal=True)
 
 page_views = app.Table("page_views", default=int)
 

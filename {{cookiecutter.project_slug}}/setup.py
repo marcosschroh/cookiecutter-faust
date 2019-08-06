@@ -1,13 +1,10 @@
 from setuptools import setup, find_packages
 
 requires = [
-    "avro-python3",
-    "colorlog==3.1.4",
-    "fastavro",{% if cookiecutter.include_rocksdb.lower() == "y" %}
-    "faust[rocksdb]==1.7.0",{% else %}
-    "faust==1.7.0",{% endif %}
+    {% if cookiecutter.include_rocksdb.lower() == "y" %}
+    "faust[rocksdb]==1.7.4",{% else %}
+    "faust==1.7.4",{% endif %}
     "robinhood-aiokafka==1.0.3",
-    "requests==2.22.0",
     "simple-settings==0.16.0",{% if cookiecutter.include_codec_example.lower() == "y" %}
     "msgpack==0.6.1",{% endif %}{% if cookiecutter.include_schema_registry.lower() == "y" %}
     "python-schema-registry-client==0.2.5",{% endif %}

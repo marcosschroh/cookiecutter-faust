@@ -26,5 +26,5 @@ matrix:
     - name: Black template	
       script: black --check hooks tests setup.py
     - name: Docker image
-      script: ./tests/test_docker.sh
+      script: ./scripts/test_docker.sh
 

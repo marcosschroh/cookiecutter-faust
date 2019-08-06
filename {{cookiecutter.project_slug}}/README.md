@@ -59,6 +59,8 @@ Basic Commands
 * Start application: `make run-dev`. This command start both the *Page Views* and *Leader Election* applications
 * Stop and remove containers: `make clean`
 * List topics: `make list-topics`
+* Create topic: `make create-topic={topic-name}`
+* List agents: `make list-agents`
 * Send events to page_view topic/agent: `make send-page-view-event payload='{"id": "foo", "user": "bar"}'`
   
 {% elif cookiecutter.use_docker == "y" %}

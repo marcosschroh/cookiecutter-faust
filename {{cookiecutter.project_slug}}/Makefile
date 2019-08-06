@@ -1,7 +1,8 @@
 {% if cookiecutter.include_docker_compose == "y" %}
 service={{cookiecutter.project_slug}}
 worker={{cookiecutter.project_slug}}.app
-partitions=4
+partitions=1
+replication-factor=1
 
 bash:
 	docker-compose run --user=$(shell id -u) ${service} bash
@@ -38,9 +39,16 @@ clean: stop remove remove-network
 list-topics:
 	docker-compose exec kafka kafka-topics --list --zookeeper zookeeper:32181
 
+create-topic:
+	docker-compose exec kafka kafka-topics --create --zookeeper zookeeper:32181 --replication-factor ${replication-factor} --partitions ${partitions} --topic ${topic-name}
+
 # Faust commands related
 send-page-view-event:
 	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings ${service} faust -A ${worker} send page_views '${payload}'
+
+list-agents:
+	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings ${service} faust -A ${worker} agents
+
 {% else %}
 # Build docker image
 build:

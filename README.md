@@ -184,3 +184,11 @@ Bonus
 
 If you choose `yes` to `include_page_view_tutorial` option
 you will have the app `page_views` running from the [tutorial](https://faust.readthedocs.io/en/latest/playbooks/pageviews.html)
+
+
+Run tests
+----------
+
+```sh
+./scripts/test.sh
+```

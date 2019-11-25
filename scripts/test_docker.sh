@@ -20,8 +20,6 @@ docker-compose stop
 echo yes | docker-compose rm
 docker network rm ${project_name} | true
 
-ls -la
-
 ./scripts/test.sh
 
 docker-compose run -e SIMPLE_SETTINGS=${project_name}.settings ${project_name} echo "project running... :-)"

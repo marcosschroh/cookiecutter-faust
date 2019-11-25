@@ -1,6 +1,4 @@
 # Config file for automatic testing at travis-ci.org
-dist: xenial   # required for Python >= 3.7
-
 language: python
 
 services:
@@ -18,15 +16,13 @@ install: pip install -r requirements.txt
 matrix:
   include:	
     - name: test python 3.6
-      python: 3.6  
-      script: tox -e py36
+      python: 3.6
+      script: ./scripts/test.sh
     - name: test python 3.7
       python: 3.7
-      script: tox -e py37
-    - name: black	
-      script: black --check hooks tests setup.py
-     - name: isort	
-      script: isort -rc .
+      script: ./scripts/test.sh
+    - name: lint
+      script: ./scripts/lint.sh
     - name: Docker image
       script: ./scripts/test_docker.sh
 

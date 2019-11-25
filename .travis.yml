@@ -17,14 +17,16 @@ install: pip install -r requirements.txt
 
 matrix:
   include:	
-    - name: Test Python 3.6
+    - name: test python 3.6
       python: 3.6  
       script: tox -e py36
-    - name: Test Python 3.7
+    - name: test python 3.7
       python: 3.7
       script: tox -e py37
-    - name: Black template	
+    - name: black	
       script: black --check hooks tests setup.py
+     - name: isort	
+      script: isort -rc .
     - name: Docker image
       script: ./scripts/test_docker.sh
 

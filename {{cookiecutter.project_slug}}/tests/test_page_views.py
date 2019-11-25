@@ -1,17 +1,8 @@
 import pytest
 
+from {{cookiecutter.project_slug}}.page_views.agents import (count_page_views,
+                                                             page_views)
 from {{cookiecutter.project_slug}}.page_views.models import PageView
-from {{cookiecutter.project_slug}}.page_views.agents import count_page_views, page_views
-from {{cookiecutter.project_slug}}.app import app
-
-
-@pytest.fixture()
-def test_app(event_loop):
-    """passing in event_loop helps avoid 'attached to a different loop' error"""
-    app.finalize()
-    app.conf.store = 'memory://'
-    app.flow_control.resume()
-    return app
 
 
 @pytest.mark.asyncio()

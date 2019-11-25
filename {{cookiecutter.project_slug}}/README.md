@@ -100,13 +100,11 @@ Useful ENVIRONMENT variables that you may change:
 
 {% endif %}
 
-Tests
------
+Run tests
+---------
 
-Run tests with `tox`. Make sure that you have installed it.
-
-```
-tox
+```sh
+./scripts/test.sh
 ```
 
 Type checks

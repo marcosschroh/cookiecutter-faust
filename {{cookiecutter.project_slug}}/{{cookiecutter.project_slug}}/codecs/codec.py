@@ -1,13 +1,13 @@
-import msgpack
 import typing
 
+import msgpack
 
 from faust.serializers import codecs
 
 # Codec example from https://faust.readthedocs.io/en/latest/userguide/models.html#codecs
 
+
 class raw_msgpack(codecs.Codec):
-    
     def _dumps(self, obj: typing.Any) -> bytes:
         return msgpack.dumps(obj)
 
@@ -17,5 +17,3 @@ class raw_msgpack(codecs.Codec):
 
 def msgpack() -> codecs.Codec:
     return raw_msgpack() | codecs.binary()
-
-

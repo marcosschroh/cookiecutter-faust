@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     license="GPLv3",
     classifiers=[
-        "Framework :: Faust :: 1.7.4",
+        "Framework :: Faust :: 1.9.0",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",

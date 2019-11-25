@@ -1,7 +1,6 @@
 import logging
 
 from {{cookiecutter.project_slug}}.app import app
-
 from {{cookiecutter.project_slug}}.page_views.models import PageView
 
 page_view_topic = app.topic("page_views", value_type=PageView, internal=True)

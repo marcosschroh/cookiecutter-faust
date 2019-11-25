@@ -1,10 +1,10 @@
 import os
 import re
-import sh
 
 import pytest
-from pytest_cases import pytest_fixture_plus
+import sh
 from binaryornot.check import is_binary
+from pytest_cases import pytest_fixture_plus
 
 PATTERN = "{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
@@ -103,7 +103,8 @@ def check_paths(paths):
 def test_project_generation(cookies, context, context_combination):
     """
     Test that project is generated and fully rendered.
-    This is parametrized for each combination from ``context_combination`` fixture
+    This is parametrized for each combination from ``context_combination``
+    fixture
     """
     result = cookies.bake(extra_context={**context, **context_combination})
     assert result.exit_code == 0
@@ -114,21 +115,3 @@ def test_project_generation(cookies, context, context_combination):
     paths = build_files_list(str(result.project))
     assert paths
     check_paths(paths)
-
-
-# def test_linting_passes(cookies, context_combination):
-#     """
-#     Generated project should pass flake8 & black.
-#     This is parametrized for each combination from ``context_combination`` fixture
-#     """
-#     result = cookies.bake(extra_context=context_combination)
-
-#     try:
-#         sh.flake8(str(result.project))
-#     except sh.ErrorReturnCode as e:
-#         pytest.fail(e)
-
-#     try:
-#         sh.black("--check", "--diff", f"{result.project}/")
-#     except sh.ErrorReturnCode as e:
-#         pytest.fail(e)

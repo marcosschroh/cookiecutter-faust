@@ -1,13 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 requires = [
     {% if cookiecutter.include_rocksdb.lower() == "y" %}
-    "faust[rocksdb]==1.7.4",{% else %}
-    "faust==1.7.4",{% endif %}
-    "robinhood-aiokafka==1.0.3",
+    "faust[rocksdb]==1.9.0",{% else %}
+    "faust==1.9.0",{% endif %}
+    "robinhood-aiokafka==1.1.3",
     "simple-settings==0.16.0",{% if cookiecutter.include_codec_example.lower() == "y" %}
     "msgpack==0.6.1",{% endif %}{% if cookiecutter.include_schema_registry.lower() == "y" %}
-    "python-schema-registry-client==0.2.5",{% endif %}
+    "python-schema-registry-client==1.2.4",{% endif %}
 ]
 
 setup(

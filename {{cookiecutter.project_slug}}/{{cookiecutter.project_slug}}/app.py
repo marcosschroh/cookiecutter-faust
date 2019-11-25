@@ -1,9 +1,8 @@
 import os
-import faust
-
-from simple_settings import settings
 from logging.config import dictConfig
 
+import faust
+from simple_settings import settings
 
 app = faust.App(
     version=1,  # fmt: off

@@ -8,7 +8,7 @@ Cookiecutter Faust
 Features
 ---------
 
-* For Faust 1.7.0
+* For Faust 1.9.0
 * Python 3.7
 * Docker and docker-compose support
 * Useful commands included in Makefile

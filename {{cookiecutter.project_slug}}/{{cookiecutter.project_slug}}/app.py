@@ -4,7 +4,6 @@ from logging.config import dictConfig
 
 from {{cookiecutter.project_slug}} import settings
 
-
 conf = {
     "version": 1,  # fmt: off
     "autodiscover": True,
@@ -16,7 +15,12 @@ conf = {
     "topic_allow_declare": settings.TOPIC_ALLOW_DECLARE,
     "topic_disable_leader": settings.TOPIC_DISABLE_LEADER,
 }
-
+{% if cookiecutter.include_ssl_settings.lower() == "y" %}
+if settings.SSL_ENABLED:
+    conf.update({
+        "broker_credentials": settings.SSL_CONTEXT
+    })
+{% endif %}
 app = faust.App(**conf)
 
 

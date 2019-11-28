@@ -22,4 +22,5 @@ docker network rm ${project_name} | true
 
 ./scripts/test.sh
 
-docker-compose run -e SIMPLE_SETTINGS=${project_name}.settings ${project_name} echo "project running... :-)"
+# Listing the agents to prove that the project generated is working 
+docker-compose run -e SIMPLE_SETTINGS=${project_name}.settings ${project_name} faust -A ${project_name}.app agents

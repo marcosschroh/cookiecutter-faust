@@ -15,9 +15,6 @@ RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-bac
 ENV PIP_FORMAT=legacy
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Create unprivileged user
-RUN adduser --disabled-password --gecos '' myuser
-
 WORKDIR /{{cookiecutter.project_slug}}/
 
 COPY . /{{cookiecutter.project_slug}}
@@ -28,5 +25,9 @@ RUN pip3 install -e .
 RUN yes Y | apt-get remove --purge git libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
 {% endif %}
 
-ENTRYPOINT ["./run.sh"]
+# Create unprivileged user
+RUN groupadd --non-unique --gid 1000 faust && adduser --disabled-password --uid 1000 --gid 1000 faust
+RUN chown -R faust:faust /{{cookiecutter.project_slug}}
+USER faust
 
+ENTRYPOINT ["./run.sh"]

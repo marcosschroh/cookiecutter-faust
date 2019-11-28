@@ -1,3 +1,5 @@
+import os
+
 SIMPLE_SETTINGS = {
     "OVERRIDE_BY_ENV": True,
     "CONFIGURE_LOGGING": True,
@@ -33,3 +35,6 @@ LOGGING = {
         }
     },
 }
+
+TOPIC_ALLOW_DECLARE = os.getenv("TOPIC_ALLOW_DECLARE", True)
+TOPIC_DISABLE_LEADER = os.getenv("TOPIC_DISABLE_LEADER", False)

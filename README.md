@@ -61,6 +61,9 @@ LOGGING = {
         },
     },
 }
+
+TOPIC_ALLOW_DECLARE = os.getenv("TOPIC_ALLOW_DECLARE", True)
+TOPIC_DISABLE_LEADER = os.getenv("TOPIC_DISABLE_LEADER", False)
 ```
 
 Docker and Docker Compose

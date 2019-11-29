@@ -146,6 +146,7 @@ Select faust_loglevel:
 Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
 include_schema_registry [y]:
 include_rocksdb [y]:
+include_ssl_settings [n]:
 ```
 
 Enter the project and take a look around:

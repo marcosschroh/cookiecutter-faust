@@ -2,7 +2,7 @@ import os
 import re
 
 import pytest
-import sh
+
 from binaryornot.check import is_binary
 from pytest_cases import pytest_fixture_plus
 
@@ -51,6 +51,7 @@ def context():
     "include_schema_registry", YN_CHOICES, ids=lambda yn: f"schema_registry:{yn}"
 )
 @pytest.mark.parametrize("include_rocksdb", YN_CHOICES, ids=lambda yn: f"rocksdb:{yn}")
+@pytest.mark.parametrize("include_ssl_settings", YN_CHOICES, ids=lambda yn: f"include_ssl_settings:{yn}")
 def context_combination(
     use_docker,
     include_docker_compose,
@@ -61,6 +62,7 @@ def context_combination(
     include_codec_example,
     include_schema_registry,
     include_rocksdb,
+    include_ssl_settings,
 ):
     """Fixture that parametrize the function where it's used."""
     return {
@@ -73,6 +75,7 @@ def context_combination(
         "include_codec_example": include_codec_example,
         "include_schema_registry": include_schema_registry,
         "include_rocksdb": include_rocksdb,
+        "include_ssl_settings": include_ssl_settings,
     }
 
 

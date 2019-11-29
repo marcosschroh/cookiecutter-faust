@@ -29,5 +29,6 @@
       "NOTSET"
     ],
     "include_schema_registry": "y",
-    "include_rocksdb": "y"
+    "include_rocksdb": "y",
+    "include_ssl_settings": "n"
 }

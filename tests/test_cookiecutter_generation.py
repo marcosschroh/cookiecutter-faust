@@ -10,7 +10,8 @@ PATTERN = "{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
 
 YN_CHOICES = ["y", "n"]
-FAUST_LOGLEVEL = ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"]
+FAUST_LOGLEVEL = ["CRITICAL", "ERROR", ]
+CI_PROVIDERS = ["travis", "none", ]
 WORKER_PORT = [6066, 8000, 8080]
 KAFKA_SERVER = ["KAFKA_BOOTSTRAP_SERVER", "KAFKA_SERVER"]
 
@@ -36,7 +37,7 @@ def context():
     "include_page_view_tutorial", YN_CHOICES, ids=lambda yn: f"page_tutorial:{yn}"
 )
 @pytest.mark.parametrize(
-    "faust_loglevel", FAUST_LOGLEVEL, ids=lambda yn: f"loglevel:{yn}"
+    "faust_loglevel", FAUST_LOGLEVEL, ids=["CRITICAL", "ERROR", ]
 )
 @pytest.mark.parametrize("worker_port", WORKER_PORT, ids=lambda yn: f"worker_port:{yn}")
 @pytest.mark.parametrize(
@@ -52,6 +53,9 @@ def context():
 )
 @pytest.mark.parametrize("include_rocksdb", YN_CHOICES, ids=lambda yn: f"rocksdb:{yn}")
 @pytest.mark.parametrize("include_ssl_settings", YN_CHOICES, ids=lambda yn: f"include_ssl_settings:{yn}")
+@pytest.mark.parametrize(
+    "ci_provider", CI_PROVIDERS, ids=["travis", "none", ]
+)
 def context_combination(
     use_docker,
     include_docker_compose,
@@ -63,6 +67,7 @@ def context_combination(
     include_schema_registry,
     include_rocksdb,
     include_ssl_settings,
+    ci_provider,
 ):
     """Fixture that parametrize the function where it's used."""
     return {
@@ -76,6 +81,7 @@ def context_combination(
         "include_schema_registry": include_schema_registry,
         "include_rocksdb": include_rocksdb,
         "include_ssl_settings": include_ssl_settings,
+        "ci_provider": ci_provider,
     }
 
 
@@ -89,7 +95,8 @@ def build_files_list(root_dir):
 
 
 def check_paths(paths):
-    """Method to check all paths have correct substitutions,
+    """
+    Method to check all paths have correct substitutions,
     used by other tests cases
     """
     # Assert that no match is found in any of the files

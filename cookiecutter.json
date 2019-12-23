@@ -30,5 +30,9 @@
     ],
     "include_schema_registry": "y",
     "include_rocksdb": "y",
-    "include_ssl_settings": "n"
+    "include_ssl_settings": "n",
+    "ci_provider": [
+      "travis",
+      "none"
+    ]
 }

@@ -147,6 +147,10 @@ Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
 include_schema_registry [y]:
 include_rocksdb [y]:
 include_ssl_settings [n]:
+Select ci_provider:
+1 - travis
+2 - none
+Choose from 1, 2 (1, 2) [1]: 2
 ```
 
 Enter the project and take a look around:

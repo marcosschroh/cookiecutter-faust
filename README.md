@@ -5,8 +5,18 @@ Cookiecutter Faust
 [![GitHub license](https://img.shields.io/github/license/marcosschroh/cookiecutter-faust.svg)](https://github.com/marcosschroh/cookiecutter-faust/blob/feature/add-license-and-remove-network-after-clean/LICENSE)
 
 
+Table of Contents
+-----------------
+
+  - [Features](#features)
+  - [Usage](#usage)
+  - [Useful Commands](#useful-commands)
+  - [Settings](#settings)
+  - [Docker and Docker Compose](#docker-and-docker-compose)
+  - [Run tests](#run-tests)
+
 Features
----------
+--------
 
 * For Faust 1.9.0
 * Python 3.7
@@ -14,6 +24,121 @@ Features
 * Useful commands included in Makefile
 * project skeleton is defined as a medium/large project according to [faust layout](https://faust.readthedocs.io/en/latest/userguide/application.html#projects-and-directory-layout)
 * The `setup.py` has the entrypoint to resolve the [entrypoint problem](https://faust.readthedocs.io/en/latest/userguide/application.html#problem-entrypoint)
+
+
+Usage
+------
+
+Let's pretend you want to create a Faust project called "super faust".
+
+First, install `Cookiecutter`.
+
+```bash
+pip install "cookiecutter>=1.4.0"
+```
+
+Now run it against this repo::
+
+```bash
+cookiecutter https://github.com/marcosschroh/cookiecutter-faust
+```
+
+You'll be prompted for some values. Provide them, then a Faust project will be created for you
+based on the convention of medium/large project mentioned above
+
+
+Answer the prompts with your own desired options_. For example:
+
+```bash
+project_name [My Awesome Faust Project]: super faust
+project_slug [super_faust]:
+description [My Awesome Faust Project!]:
+long_description [My Awesome Faust Project!]:
+author_name [Marcos Schroh]:
+author_email [marcos-schroh@gmail.com]:
+version [0.1.0]:
+Select open_source_license:
+1 - MIT
+2 - BSD
+3 - GPLv3
+4 - Apache Software License 2.0
+5 - Not open source
+Choose from 1, 2, 3, 4, 5 (1, 2, 3, 4, 5) [1]:
+use_pycharm [n]:
+use_docker [n]: y
+include_docker_compose [n]: y
+include_page_view_tutorial [n]: y
+worker_port [6066]:
+kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
+include_codec_example [y]:
+Select faust_loglevel:
+1 - CRITICAL
+2 - ERROR
+3 - WARNING
+4 - INFO
+5 - DEBUG
+6 - NOTSET
+Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
+include_schema_registry [y]:
+include_rocksdb [y]:
+include_ssl_settings [n]:
+Select ci_provider:
+1 - travis
+2 - none
+Choose from 1, 2 (1, 2) [1]: 2
+```
+
+Enter the project and take a look around:
+
+```bash
+cd super_faust/
+ls
+
+CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml  run.sh  setup.cfg  setup.py  super_faust  wait_for_services.sh
+```
+
+Now time to run it. In a terminal located at the project root directory folder execute:
+
+
+```bash
+make run-dev
+```
+
+Now you will see the project starting. If you chose to have the [page view tutorial]((https://faust.readthedocs.io/en/latest/playbooks/pageviews.html)), you can send events to the `page_views` topic. In a different terminal also at the project root directory execute:
+
+```bash
+make send-page-view-event payload='{"id": "foo", "user": "bar"}'
+```
+
+and in the first terminal you will see the logs of the event received.
+
+![Running Project](docs/img/cookiecutter-faust.gif)
+
+Optional, create a git repo and push it there:
+
+```bash
+git init
+git add .
+git commit -m "first awesome commit"
+git remote add origin git@github.com:marcosschroh/super-faust.git
+git push -u origin master
+```
+
+Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
+
+
+Useful Commands
+---------------
+
+|Command|Description| Default values|Example|
+|-------|------------|--------------|-------|
+| `make run-dev`      | Run the application          |      ---        | |
+| `make clean`      |  Clean containers and network         |     ---         | |
+| `make bash service={the-service}`      |  Access to container         |   service={project-name}           | `make bash` |
+| `make list-topics`      |      List topics     |    ---          | |
+| `make create-topic replication-factor={replication-factor} --partitions={number-of-partitions topic-name={your-topic-name}`      |  Create topic         |  replication-factor=1 partitions=1.           |  `make create-topic topic-name=test-topic`|
+| `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
+| `make list-agents`| List faust agents| --- | |
 
 
 Settings
@@ -75,9 +200,9 @@ The `Dockerfile` is based on  `python:3.7-slim`. The example is [here](https://g
 If `include_docker_compose` option is `yes` the `docker-compose.yaml` will be created.
 
 The `docker-compose.yaml` includes `zookeepeer`, `kafka` and `schema-registry` based on `confluent-inc`.
-For more information you can go to [confluentinc](https://docs.confluent.io/current/installation/docker/docs/index.html) and see the docker compose example [here](https://github.com/confluentinc/cp-docker-images/blob/master/examples/cp-all-in-one/docker-compose.yml#L23-L48)
+For more information you can go to [confluentinc](https://docs.confluent.io/current/installation/docker/docs/index.html) and see the docker compose example [here](https://github.com/confluentinc/examples/blob/5.3.1-post/cp-all-in-one/docker-compose.yml)
 
-Useful ENVIRONMENT variables that you may change:
+Useful `ENVIRONMENT` variables that you may change:
 
 |Variable| description  | default |
 |--------|--------------|---------|
@@ -91,112 +216,9 @@ Useful ENVIRONMENT variables that you may change:
 | SCHEMA_REGISTRY_URL | Schema Registry Server url | `http://schema-registry:8081` |
 
 
-Usage
-------
-
-Let's pretend you want to create a Faust project called "super faust".
-
-First, install `Cookiecutter`.
-
-```
-pip install "cookiecutter>=1.4.0"
-```
-
-Now run it against this repo::
-
-```
-cookiecutter https://github.com/marcosschroh/cookiecutter-faust
-```
-
-You'll be prompted for some values. Provide them, then a Faust project will be created for you
-based on the convention of medium/large project mentioned above
-
-
-Answer the prompts with your own desired options_. For example:
-
-```
-project_name [My Awesome Faust Project]: super faust
-project_slug [super_faust]:
-description [My Awesome Faust Project!]:
-long_description [My Awesome Faust Project!]:
-author_name [Marcos Schroh]:
-author_email [marcos-schroh@gmail.com]:
-version [0.1.0]:
-Select open_source_license:
-1 - MIT
-2 - BSD
-3 - GPLv3
-4 - Apache Software License 2.0
-5 - Not open source
-Choose from 1, 2, 3, 4, 5 (1, 2, 3, 4, 5) [1]:
-use_pycharm [n]:
-use_docker [n]: y
-include_docker_compose [n]: y
-include_page_view_tutorial [n]: y
-worker_port [6066]:
-kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
-include_codec_example [y]:
-Select faust_loglevel:
-1 - CRITICAL
-2 - ERROR
-3 - WARNING
-4 - INFO
-5 - DEBUG
-6 - NOTSET
-Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
-include_schema_registry [y]:
-include_rocksdb [y]:
-include_ssl_settings [n]:
-Select ci_provider:
-1 - travis
-2 - none
-Choose from 1, 2 (1, 2) [1]: 2
-```
-
-Enter the project and take a look around:
-
-```
-cd super_faust/
-ls
-
-CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml  run.sh  setup.cfg  setup.py  super_faust  wait_for_services.sh
-```
-
-Create a git repo and push it there:
-
-```
-git init
-git add .
-git commit -m "first awesome commit"
-git remote add origin git@github.com:marcosschroh/super-faust.git
-git push -u origin master
-```
-
-Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
-
-Useful Commands:
-----------------
-
-|Command|Description| Default values|Example|
-|-------|------------|--------------|-------|
-| `make run-dev`      | Run the application          |      ---        | |
-| `make clean`      |  Clean containers and network         |     ---         | |
-| `make bash service={the-service}`      |  Access to container         |   service={project-name}           | `make bash` |
-| `make list-topics`      |      List topics     |    ---          | |
-| `make create-topic replication-factor={replication-factor} --partitions={number-of-partitions topic-name={your-topic-name}`      |  Create topic         |  replication-factor=1 partitions=1.           |  `make create-topic topic-name=test-topic`|
-| `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
-| `make list-agents`| List faust agents| --- | |
-
-Bonus
------
-
-If you choose `yes` to `include_page_view_tutorial` option
-you will have the app `page_views` running from the [tutorial](https://faust.readthedocs.io/en/latest/playbooks/pageviews.html)
-
-
 Run tests
 ----------
 
-```sh
+```bash
 ./scripts/test.sh
 ```

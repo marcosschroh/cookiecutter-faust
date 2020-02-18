@@ -9,4 +9,4 @@ install: pip install -r requirements.txt
 matrix:
   include:	
     - name: Test Python
-      script: ./scripts/test.sh
+      script: ./scripts/test

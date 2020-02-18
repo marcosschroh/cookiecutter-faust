@@ -1,0 +1,10 @@
+replicas: 2
+
+hostname: '{{ cookiecutter.project_slug }}.com'
+env: prod
+
+worker:
+  debug: false
+
+bootstrapServers:
+  - kafka:9093

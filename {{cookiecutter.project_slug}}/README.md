@@ -38,7 +38,7 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': '{{cookiecutter.faust_loglevel}}',
+            'level': '{{cookiecutter.log_level}}',
             'class': 'logging.StreamHandler',
             'formatter': 'default',
         },
@@ -46,7 +46,7 @@ LOGGING = {
     'loggers': {
         '{{cookiecutter.project_slug}}': {
             'handlers': ['console'],
-            'level': '{{cookiecutter.faust_loglevel}}',
+            'level': '{{cookiecutter.log_level}}',
         },
     },
 }

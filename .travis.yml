@@ -15,14 +15,8 @@ install: pip install -r requirements.txt
 
 matrix:
   include:	
-    - name: test python 3.6
-      python: 3.6
-      script: ./scripts/test.sh
-    - name: test python 3.7
+    - name: Test
       python: 3.7
-      script: ./scripts/test.sh
-    - name: lint
-      script: ./scripts/lint.sh
-    - name: Docker image
-      script: ./scripts/test_docker.sh
-
+      script: ./scripts/test
+    - name: Test Docker image
+      script: ./scripts/test_docker

@@ -1,11 +1,10 @@
-#!/bin/sh
-# sh tests/test_docker.sh
+#!/bin/sh -e
 
 set -o errexit
 project_name="my_awesome_faust_project"
 
 # install test requirements
-pip install faust==1.9.0 simple-settings==0.16.0
+pip install faust simple-settings
 pip install -r ./requirements.txt
 
 # create a cache directory
@@ -18,9 +17,10 @@ cd ${project_name}
 
 docker-compose stop
 echo yes | docker-compose rm
-docker network rm ${project_name} | true
 
-./scripts/test.sh
+docker network rm ${project_name} || true
+
+./scripts/test
 
 # Listing the agents to prove that the project generated is working 
 docker-compose run -e SIMPLE_SETTINGS=${project_name}.settings ${project_name} faust -A ${project_name}.app agents

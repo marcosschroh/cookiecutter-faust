@@ -10,7 +10,7 @@ PATTERN = "{{(\s?cookiecutter)[.](.*?)}}"
 RE_OBJ = re.compile(PATTERN)
 
 YN_CHOICES = ["y", "n"]
-FAUST_LOGLEVEL = ["CRITICAL", "ERROR", ]
+log_level = ["CRITICAL", "ERROR", ]
 CI_PROVIDERS = ["travis", "none", ]
 WORKER_PORT = [6066, 8000, 8080]
 KAFKA_SERVER = ["KAFKA_BOOTSTRAP_SERVER", "KAFKA_SERVER"]
@@ -37,7 +37,7 @@ def context():
     "include_page_view_tutorial", YN_CHOICES, ids=lambda yn: f"page_tutorial:{yn}"
 )
 @pytest.mark.parametrize(
-    "faust_loglevel", FAUST_LOGLEVEL, ids=["CRITICAL", "ERROR", ]
+    "log_level", log_level, ids=["CRITICAL", "ERROR", ]
 )
 @pytest.mark.parametrize("worker_port", WORKER_PORT, ids=lambda yn: f"worker_port:{yn}")
 @pytest.mark.parametrize(
@@ -60,7 +60,7 @@ def context_combination(
     use_docker,
     include_docker_compose,
     include_page_view_tutorial,
-    faust_loglevel,
+    log_level,
     worker_port,
     kafka_server_environment_variable,
     include_codec_example,
@@ -74,7 +74,7 @@ def context_combination(
         "use_docker": use_docker,
         "include_docker_compose": include_docker_compose,
         "include_page_view_tutorial": include_page_view_tutorial,
-        "faust_loglevel": faust_loglevel,
+        "log_level": log_level,
         "worker_port": worker_port,
         "kafka_server_environment_variable": kafka_server_environment_variable,
         "include_codec_example": include_codec_example,

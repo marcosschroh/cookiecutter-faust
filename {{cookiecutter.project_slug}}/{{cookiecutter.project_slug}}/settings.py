@@ -25,16 +25,13 @@ LOGGING = {
     },
     "handlers": {
         "console": {
-            "level": "{{cookiecutter.faust_loglevel}}",
+            "level": "{{cookiecutter.log_level}}",
             "class": "logging.StreamHandler",
             "formatter": "default",
         }
     },
     "loggers": {  # fmt: off
-        "{{cookiecutter.project_slug}}": {
-            "handlers": ["console"],
-            "level": "{{cookiecutter.faust_loglevel}}",
-        }
+        "{{cookiecutter.project_slug}}": {"handlers": ["console"], "level": "{{cookiecutter.log_level}}",}
     },
 }
 
@@ -46,18 +43,17 @@ SSL_ENABLED = os.getenv("SSL_ENABLED", False)
 if SSL_ENABLED:
     # file in pem format containing the client certificate, as well as any ca certificates
     # needed to establish the certificate’s authenticity
-    SSL_CERT_FILE = "path_to_ssl_certificate.pem"
+    KAFKA_SSL_CERT = os.getenv("KAFKA_SSL_CERT", "path_to_ssl_certificate.pem")
 
     # filename containing the client private key
-    SSL_KEY_FILE = "path_tp_private_key.key"
+    KAFKA_SSL_KEY = os.getenv("KAFKA_SSL_KEY", "path_tp_private_key.key")
 
     # filename of ca file to use in certificate verification
-    CA_FILE = "path_to_ca_file.crt"
+    KAFKA_SSL_CABUNDLE = os.getenv("KAFKA_SSL_CABUNDLE", "path_to_ca_file.crt")
 
     # password for decrypting the client private key
     SSL_KEY_PASSWORD = os.getenv("SSL_KEY_PASSWORD")
 
     SSL_CONTEXT = ssl.create_default_context(
-        purpose=ssl.Purpose.SERVER_AUTH, cafile=CA_FILE)
-    SSL_CONTEXT.load_cert_chain(SSL_CERT_FILE, keyfile=SSL_KEY_FILE, password=SSL_KEY_PASSWORD)
-{% endif %}
+        purpose=ssl.Purpose.SERVER_AUTH, cafile=KAFKA_SSL_CABUNDLE)
+    SSL_CONTEXT.load_cert_chain(KAFKA_SSL_CERT, keyfile=KAFKA_SSL_KEY, password=SSL_KEY_PASSWORD){% endif %}

@@ -15,5 +15,5 @@ class raw_msgpack(codecs.Codec):
         return msgpack.loads(s)
 
 
-def msgpack() -> codecs.Codec:
+def msgpack_codec() -> codecs.Codec:
     return raw_msgpack() | codecs.binary()

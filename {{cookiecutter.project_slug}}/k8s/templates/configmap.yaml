@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ '{{ include "k8s.name" . }}' }}-configmap
+  labels:
+    app: {{ '{{ include "k8s.name" . }}' }}
+data:
+  ENVIRONMENT: "{{ '{{ .Values.env }}' }}"
+  DEBUG: "{{ '{{ .Values.worker.debug }}' }}"
+  SSL_ENABLED: "true"
+  WORKER_WEB_PORT: "{{ '{{ .Values.worker.webPort }}' }}"
+  WORKER_LOG_LEVEL: "{{ '{{ .Values.worker.logLevel }}' }}"
+  KAFKA_BOOTSTRAP_SERVER: '{{ "{{ tpl (toJson  .Values.kafka.bootstrapServers) . }}" }}'
+  KAFKA_SSL_CERT: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.certName }}' }}"
+  KAFKA_SSL_KEY: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.keyName }}' }}"
+  KAFKA_SSL_CABUNDLE: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.caName }}' }}"
+  SSL_ENABLED: "True"

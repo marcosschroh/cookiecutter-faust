@@ -21,12 +21,12 @@ setup(
     download_url="",
     packages=[],
     include_package_data=True,
-    license="GPLv3",
+    license="MIT",
     classifiers=[
-        "Framework :: Faust :: 1.9.0",
+        "Framework :: Faust",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "Topic :: Software Development",
     ],
     keywords=(

@@ -4,7 +4,6 @@ Cookiecutter Faust
 [![Build Status](https://travis-ci.org/marcosschroh/cookiecutter-faust.svg?branch=master)](https://travis-ci.org/marcosschroh/cookiecutter-faust)
 [![GitHub license](https://img.shields.io/github/license/marcosschroh/cookiecutter-faust.svg)](https://github.com/marcosschroh/cookiecutter-faust/blob/feature/add-license-and-remove-network-after-clean/LICENSE)
 
-
 Table of Contents
 -----------------
 
@@ -18,16 +17,15 @@ Table of Contents
 Features
 --------
 
-* For Faust 1.9.0
-* Python 3.7
-* Docker and docker-compose support
-* Useful commands included in Makefile
-* project skeleton is defined as a medium/large project according to [faust layout](https://faust.readthedocs.io/en/latest/userguide/application.html#projects-and-directory-layout)
-* The `setup.py` has the entrypoint to resolve the [entrypoint problem](https://faust.readthedocs.io/en/latest/userguide/application.html#problem-entrypoint)
-
+- Python 3.7+
+- Docker and docker-compose for development
+- Useful commands included in Makefile
+- Project skeleton is defined as a medium/large project according to [faust layout](https://faust.readthedocs.io/en/latest/userguide/application.html#projects-and-directory-layout)
+- The `setup.py` has the entrypoint to resolve the [entrypoint problem](https://faust.readthedocs.io/en/latest/userguide/application.html#problem-entrypoint)
+- Kubernetes manifests included
 
 Usage
-------
+-----
 
 Let's pretend you want to create a Faust project called "super faust".
 
@@ -71,7 +69,7 @@ include_page_view_tutorial [n]: y
 worker_port [6066]:
 kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
 include_codec_example [y]:
-Select faust_loglevel:
+Select log_level:
 1 - CRITICAL
 2 - ERROR
 3 - WARNING
@@ -126,7 +124,6 @@ git push -u origin master
 
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
 
-
 Useful Commands
 ---------------
 
@@ -139,7 +136,6 @@ Useful Commands
 | `make create-topic replication-factor={replication-factor} --partitions={number-of-partitions topic-name={your-topic-name}`      |  Create topic         |  replication-factor=1 partitions=1.           |  `make create-topic topic-name=test-topic`|
 | `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
 | `make list-agents`| List faust agents| --- | |
-
 
 Settings
 --------
@@ -174,7 +170,7 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': '{{cookiecutter.faust_loglevel}}',
+            'level': '{{cookiecutter.log_level}}',
             'class': 'logging.StreamHandler',
             'formatter': 'default',
         },
@@ -182,7 +178,7 @@ LOGGING = {
     'loggers': {
         'your_project_slug': {
             'handlers': ['console'],
-            'level': '{{cookiecutter.faust_loglevel}}',
+            'level': '{{cookiecutter.log_level}}',
         },
     },
 }
@@ -215,10 +211,17 @@ Useful `ENVIRONMENT` variables that you may change:
 | SCHEMA_REGISTRY_SERVER_PORT | Schema registry server port | `8081` |
 | SCHEMA_REGISTRY_URL | Schema Registry Server url | `http://schema-registry:8081` |
 
+Development
+-----------
 
-Run tests
-----------
+Run tests:
 
 ```bash
-./scripts/test.sh
+./scripts/test
+```
+
+Run code linting
+
+```bash
+./scripts/lint
 ```

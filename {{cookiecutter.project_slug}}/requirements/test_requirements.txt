@@ -1,0 +1,15 @@
+faust
+simple-settings
+
+# Code quality
+# ------------------------------------------------------------------------------
+black
+flake8
+
+# Testing
+# ------------------------------------------------------------------------------
+mypy
+pytest
+pytest_cases
+pytest-cookies
+pytest-asyncio

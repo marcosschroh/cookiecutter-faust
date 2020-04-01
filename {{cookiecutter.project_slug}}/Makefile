@@ -1,8 +1,15 @@
 {% if cookiecutter.include_docker_compose == "y" %}
 service={{cookiecutter.project_slug}}
-worker={{cookiecutter.project_slug}}.app
-partitions=1
-replication-factor=1
+WORKER={{cookiecutter.project_slug}}.app
+PARTITIONS=1
+REPLICATION-FACTOR=1
+
+PYTHON?=python3.7
+
+# Installation
+install:
+	$(PYTHON) -m venv venv
+	venv/bin/pip install -U pip -r requirements/requirements.txt
 
 bash:
 	docker-compose run --user=$(shell id -u) ${service} bash
@@ -40,14 +47,14 @@ list-topics:
 	docker-compose exec kafka kafka-topics --list --zookeeper zookeeper:32181
 
 create-topic:
-	docker-compose exec kafka kafka-topics --create --zookeeper zookeeper:32181 --replication-factor ${replication-factor} --partitions ${partitions} --topic ${topic-name}
+	docker-compose exec kafka kafka-topics --create --zookeeper zookeeper:32181 --replication-factor ${REPLICATION-FACTOR} --partitions ${PARTITIONS} --topic ${topic-name}
 
 # Faust commands related
 send-page-view-event:
-	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings ${service} faust -A ${worker} send page_views '${payload}'
+	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings -e PYTHONPATH={{cookiecutter.project_slug}} ${service} venv/bin/faust -A ${WORKER} send page_views '${payload}'
 
 list-agents:
-	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings ${service} faust -A ${worker} agents
+	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings -e PYTHONPATH={{cookiecutter.project_slug}} ${service} venv/bin/faust -A ${WORKER} agents
 
 {% else %}
 # Build docker image

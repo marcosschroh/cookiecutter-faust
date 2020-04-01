@@ -2,7 +2,6 @@ import os
 import re
 
 import pytest
-
 from binaryornot.check import is_binary
 from pytest_cases import pytest_fixture_plus
 
@@ -34,9 +33,6 @@ def context():
     "include_docker_compose", YN_CHOICES, ids=lambda yn: f"docker_compose:{yn}"
 )
 @pytest.mark.parametrize(
-    "include_page_view_tutorial", YN_CHOICES, ids=lambda yn: f"page_tutorial:{yn}"
-)
-@pytest.mark.parametrize(
     "log_level", log_level, ids=["CRITICAL", "ERROR", ]
 )
 @pytest.mark.parametrize("worker_port", WORKER_PORT, ids=lambda yn: f"worker_port:{yn}")
@@ -46,41 +42,31 @@ def context():
     ids=lambda yn: f"kafka_Server:{yn}",
 )
 @pytest.mark.parametrize(
-    "include_codec_example", YN_CHOICES, ids=lambda yn: f"codec_example:{yn}"
-)
-@pytest.mark.parametrize(
     "include_schema_registry", YN_CHOICES, ids=lambda yn: f"schema_registry:{yn}"
 )
 @pytest.mark.parametrize("include_rocksdb", YN_CHOICES, ids=lambda yn: f"rocksdb:{yn}")
-@pytest.mark.parametrize("include_ssl_settings", YN_CHOICES, ids=lambda yn: f"include_ssl_settings:{yn}")
 @pytest.mark.parametrize(
     "ci_provider", CI_PROVIDERS, ids=["travis", "none", ]
 )
 def context_combination(
     use_docker,
     include_docker_compose,
-    include_page_view_tutorial,
     log_level,
     worker_port,
     kafka_server_environment_variable,
-    include_codec_example,
     include_schema_registry,
     include_rocksdb,
-    include_ssl_settings,
     ci_provider,
 ):
     """Fixture that parametrize the function where it's used."""
     return {
         "use_docker": use_docker,
         "include_docker_compose": include_docker_compose,
-        "include_page_view_tutorial": include_page_view_tutorial,
         "log_level": log_level,
         "worker_port": worker_port,
         "kafka_server_environment_variable": kafka_server_environment_variable,
-        "include_codec_example": include_codec_example,
         "include_schema_registry": include_schema_registry,
         "include_rocksdb": include_rocksdb,
-        "include_ssl_settings": include_ssl_settings,
         "ci_provider": ci_provider,
     }
 

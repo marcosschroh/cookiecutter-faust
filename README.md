@@ -21,7 +21,7 @@ Features
 - Docker and docker-compose for development
 - Useful commands included in Makefile
 - Project skeleton is defined as a medium/large project according to [faust layout](https://faust.readthedocs.io/en/latest/userguide/application.html#projects-and-directory-layout)
-- The `setup.py` has the entrypoint to resolve the [entrypoint problem](https://faust.readthedocs.io/en/latest/userguide/application.html#problem-entrypoint)
+(https://faust.readthedocs.io/en/latest/userguide/application.html#problem-entrypoint)
 - Kubernetes manifests included
 
 Usage
@@ -32,7 +32,7 @@ Let's pretend you want to create a Faust project called "super faust".
 First, install `Cookiecutter`.
 
 ```bash
-pip install "cookiecutter>=1.4.0"
+pip install "cookiecutter"
 ```
 
 Now run it against this repo::
@@ -62,13 +62,10 @@ Select open_source_license:
 4 - Apache Software License 2.0
 5 - Not open source
 Choose from 1, 2, 3, 4, 5 (1, 2, 3, 4, 5) [1]:
-use_pycharm [n]:
 use_docker [n]: y
 include_docker_compose [n]: y
-include_page_view_tutorial [n]: y
 worker_port [6066]:
 kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
-include_codec_example [y]:
 Select log_level:
 1 - CRITICAL
 2 - ERROR
@@ -79,7 +76,6 @@ Select log_level:
 Choose from 1, 2, 3, 4, 5, 6 (1, 2, 3, 4, 5, 6) [1]: 4
 include_schema_registry [y]:
 include_rocksdb [y]:
-include_ssl_settings [n]:
 Select ci_provider:
 1 - travis
 2 - none
@@ -96,7 +92,6 @@ CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml 
 ```
 
 Now time to run it. In a terminal located at the project root directory folder execute:
-
 
 ```bash
 make run-dev
@@ -176,7 +171,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'your_project_slug': {
+        'page_views': {
             'handlers': ['console'],
             'level': '{{cookiecutter.log_level}}',
         },

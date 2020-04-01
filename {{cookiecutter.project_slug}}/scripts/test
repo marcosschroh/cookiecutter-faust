@@ -5,6 +5,8 @@ if [ -d 'venv' ] ; then
     export PREFIX="venv/bin/"
 fi
 
+export PYTHONPATH={{cookiecutter.project_slug}}
+
 ${PREFIX}pytest ${1-"./tests"}
 ${PREFIX}black {{cookiecutter.project_slug}} tests/ --check
 ${PREFIX}flake8 {{cookiecutter.project_slug}} tests/

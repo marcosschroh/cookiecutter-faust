@@ -1,9 +1,11 @@
 import logging
 
-from {{cookiecutter.project_slug}}.app import app
-from {{cookiecutter.project_slug}}.page_views.models import PageView
+from app import app
 
-page_view_topic = app.topic("page_views", value_type=PageView, internal=True)
+from .models import PageView
+
+page_view_topic = app.topic("page_views", value_type=PageView)
+hello_world_topic = app.topic("hello_world")
 
 page_views = app.Table("page_views", default=int)
 
@@ -17,3 +19,18 @@ async def count_page_views(views):
         logger.info(f"Event received. Page view Id {view.id}")
 
         yield view
+
+
+@app.timer(interval=3.0)
+async def producer():
+    await hello_world_topic.send(
+        key="faust", value=b'{"message": "Hello world! (Faust Version)"}'
+    )
+
+
+@app.agent(hello_world_topic)
+async def consumer(events):
+    async for event in events:
+        logger.info(event)
+
+        yield event

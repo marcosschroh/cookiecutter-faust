@@ -1,19 +1,9 @@
 import os
-import shutil
 
 
 def remove_files(file_names):
     for file_name in file_names:
         os.remove(file_name)
-
-
-def remove_page_view_tutorial():
-    shutil.rmtree("{{cookiecutter.project_slug}}/page_views")
-    os.remove("tests/test_page_views.py")
-
-
-def remove_codec():
-    shutil.rmtree("{{cookiecutter.project_slug}}/codecs")
 
 
 def clean_ci_providers(ci_option):
@@ -37,12 +27,6 @@ def main():
 
     remove_files(docker_files)
     clean_ci_providers("{{ cookiecutter.ci_provider }}".lower())
-
-    if "{{ cookiecutter.include_page_view_tutorial }}".lower() == "n":
-        remove_page_view_tutorial()
-
-    if "{{ cookiecutter.include_codec_example }}".lower() == "n":
-        remove_codec()
 
 
 if __name__ == "__main__":

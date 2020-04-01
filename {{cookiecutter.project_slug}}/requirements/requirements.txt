@@ -1,5 +1,5 @@
 {% if cookiecutter.include_rocksdb.lower() == "y" %}
-faust[rocksdb],{% else %}
+faust[rocksdb]{% else %}
 faust{% endif %}
 simple-settings{% if cookiecutter.include_schema_registry.lower() == "y" %}
-python-schema-registry-client"{% endif %}
+python-schema-registry-client{% endif %}

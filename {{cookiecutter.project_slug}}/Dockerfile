@@ -9,7 +9,7 @@ RUN apt-get install -y --no-install-recommends apt-utils \
 FROM python:3.7-slim
 
 RUN echo 'deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main' >> /etc/apt/sources.list \
-    && apt-get update && apt-get install -y netcat && apt-get autoremove -y
+    && apt-get update && apt-get install -y netcat make && apt-get autoremove -y
 {% endif %}
 
 ENV PIP_FORMAT=legacy
@@ -19,7 +19,7 @@ WORKDIR /{{cookiecutter.project_slug}}/
 
 COPY . /{{cookiecutter.project_slug}}
 
-RUN pip3 install -e .
+RUN make install
 
 {% if cookiecutter.include_rocksdb.lower() == "y" %}
 RUN yes Y | apt-get remove --purge git libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev

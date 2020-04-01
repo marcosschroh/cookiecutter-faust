@@ -44,7 +44,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        '{{cookiecutter.project_slug}}': {
+        'page_views': {
             'handlers': ['console'],
             'level': '{{cookiecutter.log_level}}',
         },
@@ -56,7 +56,7 @@ Basic Commands
 --------------
 
 {% if cookiecutter.include_docker_compose == "y" %}
-* Start application: `make run-dev`. This command start both the *Page Views* and *Leader Election* applications
+* Start application: `make run-dev`. This command start both the *Page Views* application
 * Stop and remove containers: `make clean`
 * List topics: `make list-topics`
 * Create topic: `make create-topic={topic-name}`

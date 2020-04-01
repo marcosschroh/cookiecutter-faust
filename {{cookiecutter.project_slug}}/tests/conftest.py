@@ -1,6 +1,6 @@
 import pytest
 
-from {{cookiecutter.project_slug}}.app import app
+from app import app
 
 
 @pytest.fixture()

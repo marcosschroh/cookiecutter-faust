@@ -21,6 +21,8 @@ COPY . /{{cookiecutter.project_slug}}
 
 RUN make install
 
+RUN ls
+
 {% if cookiecutter.include_rocksdb.lower() == "y" %}
 RUN yes Y | apt-get remove --purge git libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev
 {% endif %}
@@ -30,4 +32,4 @@ RUN groupadd --non-unique --gid 1000 faust && adduser --disabled-password --uid 
 RUN chown -R faust:faust /{{cookiecutter.project_slug}}
 USER faust
 
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["./scripts/run"]

@@ -23,9 +23,7 @@ async def count_page_views(views):
 
 @app.timer(interval=3.0)
 async def producer():
-    await hello_world_topic.send(
-        key="faust", value=b'{"message": "Hello world! (Faust Version)"}'
-    )
+    await hello_world_topic.send(key="faust", value=b'{"message": "Hello world! (Faust Version)"}')
 
 
 @app.agent(hello_world_topic)

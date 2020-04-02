@@ -19,17 +19,9 @@ STORE_URI = "memory://"
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "formatters": {
-        "default": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"}
-    },
-    "handlers": {
-        "console": {
-            "level": "{{cookiecutter.log_level}}",
-            "class": "logging.StreamHandler",
-            "formatter": "default",
-        }
-    },
-    "loggers": {"page_views": {"handlers": ["console"], "level": "{{cookiecutter.log_level}}",}},
+    "formatters": {"default": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"}},
+    "handlers": {"console": {"level": "{{cookiecutter.log_level}}", "class": "logging.StreamHandler", "formatter": "default",}},
+    "loggers": {"page_views": {"handlers": ["console"], "level": "{{cookiecutter.log_level}}"}},
 }
 
 TOPIC_ALLOW_DECLARE = os.getenv("TOPIC_ALLOW_DECLARE", True)
@@ -37,7 +29,7 @@ TOPIC_DISABLE_LEADER = os.getenv("TOPIC_DISABLE_LEADER", False)
 
 FAUST_CONF = {
     "id": 1,
-    "autodiscover": ["page_views",],
+    "autodiscover": ["page_views"],
     "broker": {{cookiecutter.kafka_server_environment_variable}},
     "store": STORE_URI,
     "logging_config": dictConfig(LOGGING),
@@ -61,13 +53,8 @@ if SSL_ENABLED:
     # password for decrypting the client private key
     SSL_KEY_PASSWORD = os.getenv("SSL_sKEY_PASSWORD")
 
-    SSL_CONTEXT = ssl.create_default_context(
-        purpose=ssl.Purpose.SERVER_AUTH, cafile=KAFKA_SSL_CABUNDLE
-    )
-    SSL_CONTEXT.load_cert_chain(
-        KAFKA_SSL_CERT, keyfile=KAFKA_SSL_KEY, password=SSL_KEY_PASSWORD
-    )
+    SSL_CONTEXT = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH, cafile=KAFKA_SSL_CABUNDLE)
 
-    FAUST_CONF.update(
-        {"broker_credentials": SSL_CONTEXT,}
-    )
+    SSL_CONTEXT.load_cert_chain(KAFKA_SSL_CERT, keyfile=KAFKA_SSL_KEY, password=SSL_KEY_PASSWORD)
+
+    FAUST_CONF.update({"broker_credentials": SSL_CONTEXT})

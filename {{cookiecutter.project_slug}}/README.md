@@ -67,17 +67,16 @@ Basic Commands
 * Build applicattion: `make build`
 * Run the application: `make run`
 {% else %}
-* Run the application: `./run.sh`
+* Run the application: `./scripts/run`
 {% endif %}
 
 {% if cookiecutter.use_docker == "y" %}
 Docker
 ------
 
-The `Dockerfile` is based on  `python:3.7-slim`. The most important here is that the [`entrypoint`]() will wait for `kafka` too be ready and after that execute the script [`run.sh`]()
+The `Dockerfile` is based on  `python:3.7-slim`.
 
 {% endif %}
-
 
 {% if cookiecutter.include_docker_compose == "y" %}
 Docker Compose
@@ -112,6 +111,6 @@ Type checks
 
 Running type checks with mypy:
 
-```
+```sh
 mypy {{cookiecutter.project_slug}}
 ```

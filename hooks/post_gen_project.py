@@ -20,7 +20,7 @@ def clean_ci_providers(ci_option):
 def main():
     docker_files = []
     if "{{ cookiecutter.include_docker_compose }}".lower() == "n":
-        docker_files = ["docker-compose.yaml", "wait_for_services.sh", "Makefile"]
+        docker_files = ["docker-compose.yaml", "scripts/wait-for-services", "Makefile"]
 
     if "{{ cookiecutter.use_docker }}".lower() == "n":
         docker_files.extend(["Dockerfile", ".dockerignore"])

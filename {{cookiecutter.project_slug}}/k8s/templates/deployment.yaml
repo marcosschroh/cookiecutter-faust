@@ -36,7 +36,6 @@ spec:
             - name: kafka-certs
               mountPath: {{ '{{ .Values.kafka.certsPath }}' }}
               readOnly: true
-          command: ["./run.sh", "-c"]
           resources:
 {{ '{{ toYaml .Values.resources | indent 12 }}' }}
     {{ '{{- with .Values.nodeSelector }}' }}

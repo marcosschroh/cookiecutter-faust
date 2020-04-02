@@ -2,10 +2,8 @@
     "project_name": "My Awesome Faust Project",
     "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
     "description": "My Awesome Faust Project!",
-    "long_description": "My Awesome Faust Project!",
     "author_name": "Marcos Schroh",
     "author_email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@gmail.com",
-    "version": "0.1.0",
     "open_source_license": [
       "MIT",
       "BSD",

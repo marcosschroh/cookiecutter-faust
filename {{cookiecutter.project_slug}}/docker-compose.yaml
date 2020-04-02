@@ -3,8 +3,8 @@ services:
   {{cookiecutter.project_slug}}:
     tty: true
     build: .
-    entrypoint: "./wait_for_services.sh"
-    command: "./run.sh"
+    entrypoint: "./scripts/wait-for-services"
+    command: "./scripts/run"
     depends_on:
       - zookeeper
       - kafka {% if cookiecutter.include_schema_registry.lower() == "y" %}

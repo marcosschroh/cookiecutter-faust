@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -x
 
 export SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings

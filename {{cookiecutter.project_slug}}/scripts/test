@@ -6,6 +6,7 @@ if [ -d 'venv' ] ; then
 fi
 
 export PYTHONPATH={{cookiecutter.project_slug}}
+export SIMPLE_SETTINGS=settings
 
 ${PREFIX}pytest ${1-"./tests"}
 ${PREFIX}black {{cookiecutter.project_slug}} tests/ --check

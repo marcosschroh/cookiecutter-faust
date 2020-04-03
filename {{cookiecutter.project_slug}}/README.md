@@ -12,17 +12,17 @@ Settings
 
 Settings are created based on [local-settings](https://github.com/drgarcia1986/simple-settings) package.
 
-The only settings required if the `{{cookiecutter.kafka_server_environment_variable}}` environment variable.
+The only settings required if the `KAFKA_BOOTSTRAP_SERVER` environment variable.
 
 ```python
 SIMPLE_SETTINGS = {
     'OVERRIDE_BY_ENV': True,
     'CONFIGURE_LOGGING': True,
-    'REQUIRED_SETTINGS': ('{{cookiecutter.kafka_server_environment_variable}}',),
+    'REQUIRED_SETTINGS': ('KAFKA_BOOTSTRAP_SERVER',),
 }
 
 # The following variables can be ovirriden from ENV
-{{cookiecutter.kafka_server_environment_variable}} = "kafka://kafka:9092"
+KAFKA_BOOTSTRAP_SERVER = "kafka://kafka:9092"
 ```
 
 The settings also include a basic logging configuration:
@@ -90,7 +90,7 @@ Useful ENVIRONMENT variables that you may change:
 |Variable| description  | example |
 |--------|--------------|---------|
 | WORKER_PORT | Worker port | `6066` |
-| {{cookiecutter.kafka_server_environment_variable}} | Kafka servers | `kafka://kafka:9092` |
+| KAFKA_BOOTSTRAP_SERVER | Kafka servers | `kafka://kafka:9092` |
 | KAFKA_BOOSTRAP_SERVER_NAME | Kafka server name| `kafka` |
 | KAFKA_BOOSTRAP_SERVER_PORT | Kafka server port | `9092` |
 | SCHEMA_REGISTRY_SERVER | Schema registry server name | `schema-registry` |
@@ -104,6 +104,13 @@ Run tests
 
 ```sh
 ./scripts/test.sh
+```
+
+Lint code
+---------
+
+```sh
+./scripts/lint
 ```
 
 Type checks

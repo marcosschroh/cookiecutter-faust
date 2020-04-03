@@ -37,11 +37,6 @@ def context():
 )
 @pytest.mark.parametrize("worker_port", WORKER_PORT, ids=lambda yn: f"worker_port:{yn}")
 @pytest.mark.parametrize(
-    "kafka_server_environment_variable",
-    KAFKA_SERVER,
-    ids=lambda yn: f"kafka_Server:{yn}",
-)
-@pytest.mark.parametrize(
     "include_schema_registry", YN_CHOICES, ids=lambda yn: f"schema_registry:{yn}"
 )
 @pytest.mark.parametrize("include_rocksdb", YN_CHOICES, ids=lambda yn: f"rocksdb:{yn}")
@@ -53,7 +48,6 @@ def context_combination(
     include_docker_compose,
     log_level,
     worker_port,
-    kafka_server_environment_variable,
     include_schema_registry,
     include_rocksdb,
     ci_provider,
@@ -64,7 +58,6 @@ def context_combination(
         "include_docker_compose": include_docker_compose,
         "log_level": log_level,
         "worker_port": worker_port,
-        "kafka_server_environment_variable": kafka_server_environment_variable,
         "include_schema_registry": include_schema_registry,
         "include_rocksdb": include_rocksdb,
         "ci_provider": ci_provider,

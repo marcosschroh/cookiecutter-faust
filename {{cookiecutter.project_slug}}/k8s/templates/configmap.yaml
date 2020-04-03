@@ -14,4 +14,3 @@ data:
   KAFKA_SSL_CERT: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.certName }}' }}"
   KAFKA_SSL_KEY: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.keyName }}' }}"
   KAFKA_SSL_CABUNDLE: "{{ '{{ .Values.kafka.certsPath }}/{{ .Values.kafka.caName }}' }}"
-  SSL_ENABLED: "True"

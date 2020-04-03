@@ -4,7 +4,7 @@ language: python
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 # Because we run the test with pytest==4.4.1 we need pluggy>=0.9
 # Would be easier to run travis with tox but is not trivial. 
-install: pip install -r requirements.txt
+install: pip install -r requirements/requirements.txt -r requirements/test_requirements.txt
 
 matrix:
   include:	

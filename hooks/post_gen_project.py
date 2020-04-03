@@ -9,6 +9,7 @@ def remove_files(file_names):
 def clean_ci_providers(ci_option):
     CI_OPTIONS = {
         "travis": ".travis.yml",
+        "gitlab": ".gitlab-ci.yml",
     }
 
     if ci_option != "none":

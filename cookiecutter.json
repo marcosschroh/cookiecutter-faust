@@ -26,6 +26,7 @@
     "include_rocksdb": "y",
     "ci_provider": [
       "travis",
+      "gitlab",
       "none"
     ]
 }

@@ -65,7 +65,6 @@ Choose from 1, 2, 3, 4, 5 (1, 2, 3, 4, 5) [1]:
 use_docker [n]: y
 include_docker_compose [n]: y
 worker_port [6066]:
-kafka_server_environment_variable [KAFKA_BOOTSTRAP_SERVER]:
 Select log_level:
 1 - CRITICAL
 2 - ERROR
@@ -88,7 +87,7 @@ Enter the project and take a look around:
 cd super_faust/
 ls
 
-CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml  run.sh  setup.cfg  setup.py  super_faust  wait_for_services.sh
+CONTRIBUTORS.txt  Dockerfile  LICENSE  Makefile  README.md  docker-compose.yaml setup.cfg  pyproject.py  super_faust
 ```
 
 Now time to run it. In a terminal located at the project root directory folder execute:

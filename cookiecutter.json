@@ -14,7 +14,6 @@
     "use_docker": "y",
     "include_docker_compose": "y",
     "worker_port": 6066,
-    "kafka_server_environment_variable": "KAFKA_BOOTSTRAP_SERVER",
     "log_level": [
       "INFO",
       "CRITICAL",

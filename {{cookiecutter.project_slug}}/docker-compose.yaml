@@ -11,7 +11,7 @@ services:
       - schema-registry {% endif %}
     environment:
       - WORKER_PORT={{cookiecutter.worker_port}}
-      - {{cookiecutter.kafka_server_environment_variable}}=kafka://kafka:9092
+      - KAFKA_BOOTSTRAP_SERVER=kafka://kafka:9092
       - KAFKA_BOOSTRAP_SERVER_NAME=kafka
       - KAFKA_BOOSTRAP_SERVER_PORT=9092 {% if cookiecutter.include_schema_registry.lower() == "y" %}
       - SCHEMA_REGISTRY_URL=http://schema-registry:8081

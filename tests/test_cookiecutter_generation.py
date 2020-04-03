@@ -10,7 +10,7 @@ RE_OBJ = re.compile(PATTERN)
 
 YN_CHOICES = ["y", "n"]
 log_level = ["CRITICAL", "ERROR", ]
-CI_PROVIDERS = ["travis", "none", ]
+CI_PROVIDERS = ["travis", "gitlab", "none", ]
 WORKER_PORT = [6066, 8000, 8080]
 KAFKA_SERVER = ["KAFKA_BOOTSTRAP_SERVER", "KAFKA_SERVER"]
 
@@ -41,7 +41,7 @@ def context():
 )
 @pytest.mark.parametrize("include_rocksdb", YN_CHOICES, ids=lambda yn: f"rocksdb:{yn}")
 @pytest.mark.parametrize(
-    "ci_provider", CI_PROVIDERS, ids=["travis", "none", ]
+    "ci_provider", CI_PROVIDERS, ids=["travis", "gitlab", "none", ]
 )
 def context_combination(
     use_docker,

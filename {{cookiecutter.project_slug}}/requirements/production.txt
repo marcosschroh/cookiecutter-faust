@@ -1,0 +1,4 @@
+-r base.txt
+{% if cookiecutter.include_rocksdb.lower() == "y" %}
+faust[rocksdb]
+{% endif %}

@@ -1,28 +1,31 @@
-{% if cookiecutter.include_docker_compose == "y" %}
-service={{cookiecutter.project_slug}}
-WORKER={{cookiecutter.project_slug}}.app
 PARTITIONS=1
 REPLICATION-FACTOR=1
+
+# For local development
+export WORKER_PORT={{cookiecutter.worker_port}}
+export SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings
 
 PYTHON?=python3.7
 
 # Installation
 install:
 	$(PYTHON) -m venv venv
-	venv/bin/pip install -U pip -r requirements/requirements.txt
+	venv/bin/pip install -U pip -r requirements/base.txt
+
+install-test:
+	$(PYTHON) -m venv venv
+	venv/bin/pip install -U pip -r requirements/test.txt
+
+install-production:
+	$(PYTHON) -m venv venv
+	venv/bin/pip install -U pip -r requirements/production.txt
 
 bash:
 	docker-compose run --user=$(shell id -u) ${service} bash
 
-# Build docker image
-build:
-	docker-compose build
-
+# Build docker compose
 restart:
 	docker-compose restart ${service}
-
-run:
-	docker-compose up
 
 logs:
 	docker-compose logs
@@ -33,14 +36,15 @@ remove:
 	docker-compose rm --force -v
 
 remove-network:
-	docker network rm {{cookiecutter.project_slug}}_default
+	docker network rm {{cookiecutter.project_slug}}_default || true
 
 stop:
 	docker-compose stop
 
-run-dev: build run
+kafka-cluster:
+	docker-compose up
 
-clean: stop remove remove-network
+stop-kafka-cluster: stop remove remove-network
 
 # Kafka related
 list-topics:
@@ -50,17 +54,18 @@ create-topic:
 	docker-compose exec kafka kafka-topics --create --zookeeper zookeeper:32181 --replication-factor ${REPLICATION-FACTOR} --partitions ${PARTITIONS} --topic ${topic-name}
 
 # Faust commands related
+start-app:
+	./scripts/run
+
 send-page-view-event:
-	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings -e PYTHONPATH={{cookiecutter.project_slug}} ${service} venv/bin/faust -A ${WORKER} send page_views '${payload}'
+	PYTHONPATH={{cookiecutter.project_slug}} venv/bin/faust -A app send page_views '${payload}'
 
 list-agents:
-	docker-compose exec -e SIMPLE_SETTINGS={{cookiecutter.project_slug}}.settings -e PYTHONPATH={{cookiecutter.project_slug}} ${service} venv/bin/faust -A ${WORKER} agents
+	PYTHONPATH={{cookiecutter.project_slug}} venv/bin/faust -A app agents
 
-{% else %}
 # Build docker image
 build:
 	docker build -t {{cookiecutter.project_slug}} .
 
 run:
 	docker run {{cookiecutter.project_slug}}
-{% endif %}

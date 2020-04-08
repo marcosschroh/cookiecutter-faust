@@ -7,6 +7,31 @@
 :License: {{cookiecutter.open_source_license}}
 {% endif %}
 
+Installation
+------------
+
+Install local requirements:
+
+```bash
+make install
+```
+
+Usage
+------
+
+If you do not have a cluster running locally you can use `docker-compose` to avoid several headaches.
+By default the `KAFKA_BOOTSTRAP_SERVER` is `kafka://localhost:29092`.
+
+```bash
+make kafka-cluster
+```
+
+Then, start the `Faust application`:
+
+```bash
+make start-app
+```
+
 Settings
 --------
 
@@ -18,11 +43,11 @@ The only settings required if the `KAFKA_BOOTSTRAP_SERVER` environment variable.
 SIMPLE_SETTINGS = {
     'OVERRIDE_BY_ENV': True,
     'CONFIGURE_LOGGING': True,
-    'REQUIRED_SETTINGS': ('KAFKA_BOOTSTRAP_SERVER',),
+    'REQUIRED_SETTINGS': ('KAFKA_BOOTSTRAP_SERVER', 'STORE_URI'),
 }
 
 # The following variables can be ovirriden from ENV
-KAFKA_BOOTSTRAP_SERVER = "kafka://kafka:9092"
+KAFKA_BOOTSTRAP_SERVER = "kafka://localhost:29092"
 ```
 
 The settings also include a basic logging configuration:
@@ -55,30 +80,20 @@ LOGGING = {
 Basic Commands
 --------------
 
-{% if cookiecutter.include_docker_compose == "y" %}
-* Start application: `make run-dev`. This command start both the *Page Views* application
-* Stop and remove containers: `make clean`
+* Start application: `make kafka-cluster`. This command start both the *Page Views* application
+* Stop and remove containers: `make stop-kafka-cluster`
+* Install requirements: `make install`
+* Start Faust application: `make start-app`
 * List topics: `make list-topics`
 * Create topic: `make create-topic={topic-name}`
 * List agents: `make list-agents`
 * Send events to page_view topic/agent: `make send-page-view-event payload='{"id": "foo", "user": "bar"}'`
-  
-{% elif cookiecutter.use_docker == "y" %}
-* Build applicattion: `make build`
-* Run the application: `make run`
-{% else %}
-* Run the application: `./scripts/run`
-{% endif %}
 
-{% if cookiecutter.use_docker == "y" %}
 Docker
 ------
 
 The `Dockerfile` is based on  `python:3.7-slim`.
 
-{% endif %}
-
-{% if cookiecutter.include_docker_compose == "y" %}
 Docker Compose
 --------------
 
@@ -90,14 +105,12 @@ Useful ENVIRONMENT variables that you may change:
 |Variable| description  | example |
 |--------|--------------|---------|
 | WORKER_PORT | Worker port | `6066` |
-| KAFKA_BOOTSTRAP_SERVER | Kafka servers | `kafka://kafka:9092` |
+| KAFKA_BOOTSTRAP_SERVER | Kafka servers | `kafka://localhost:29092` |
 | KAFKA_BOOSTRAP_SERVER_NAME | Kafka server name| `kafka` |
 | KAFKA_BOOSTRAP_SERVER_PORT | Kafka server port | `9092` |
 | SCHEMA_REGISTRY_SERVER | Schema registry server name | `schema-registry` |
 | SCHEMA_REGISTRY_SERVER_PORT | Schema registry server port | `8081` |
 | SCHEMA_REGISTRY_URL | Schema Registry Server url | `http://schema-registry:8081` |
-
-{% endif %}
 
 Run tests
 ---------

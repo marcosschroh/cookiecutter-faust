@@ -1,26 +1,47 @@
 #!/bin/sh -e
 
-set -o errexit
-project_name="my_awesome_faust_project"
+TEST_FOLDER=.test-docker
 
-# install test requirements
-pip install faust simple-settings
-pip install -r ./requirements.txt
+set -o errexit
+PROJECT_NAME="my_awesome_faust_project"
 
 # create a cache directory
-mkdir -p .cache/docker
-cd .cache/docker
+mkdir -p ${TEST_FOLDER}
+cd ${TEST_FOLDER}
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input --overwrite-if-exists $@
-cd ${project_name}
+cookiecutter ../ --no-input --overwrite-if-exists $@
+cd ${PROJECT_NAME}
 
-docker-compose stop
-echo yes | docker-compose rm
+make stop-kafka-cluster
 
-docker network rm ${project_name} || true
+echo "running on ${ENVIRONMENT}"
+
+# install test requirements and run test
+if [ "$ENVIRONMENT" = "CI" ]
+then
+    pip install -r requirements/test.txt
+else
+    make install-test
+fi
 
 ./scripts/test
+docker-compose up -d
 
-# Listing the agents to prove that the project generated is working 
-docker-compose run --entrypoint scripts/wait-for-services -e PYTHONPATH=${project_name} -e SIMPLE_SETTINGS=settings ${project_name} venv/bin/faust -A app agents
+# Listing the agents to prove that the project generated is working
+export KAFKA_BOOSTRAP_SERVER_NAME=localhost
+export KAFKA_BOOSTRAP_SERVER_PORT=29092
+
+./scripts/wait-for-services
+
+if [ "$ENVIRONMENT" = "CI" ]
+then
+    export WORKER_PORT=6066
+    export SIMPLE_SETTINGS=${PROJECT_NAME}.settings
+    PYTHONPATH=${PROJECT_NAME} faust -A app agents
+else
+    make list-agents
+fi
+
+# Clean containers and code
+make stop-kafka-cluster

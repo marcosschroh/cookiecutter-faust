@@ -7,6 +7,7 @@ metadata:
 data:
   ENVIRONMENT: "{{ '{{ .Values.env }}' }}"
   DEBUG: "{{ '{{ .Values.worker.debug }}' }}"
+  STORE_URI: "{{ '{{ .Values.worker.storeUri }}' }}"
   SSL_ENABLED: "true"
   WORKER_WEB_PORT: "{{ '{{ .Values.worker.webPort }}' }}"
   WORKER_LOG_LEVEL: "{{ '{{ .Values.worker.logLevel }}' }}"

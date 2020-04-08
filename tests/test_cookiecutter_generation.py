@@ -28,10 +28,6 @@ def context():
 
 
 @pytest_fixture_plus
-@pytest.mark.parametrize("use_docker", YN_CHOICES, ids=lambda yn: f"docker:{yn}")
-@pytest.mark.parametrize(
-    "include_docker_compose", YN_CHOICES, ids=lambda yn: f"docker_compose:{yn}"
-)
 @pytest.mark.parametrize(
     "log_level", log_level, ids=["CRITICAL", "ERROR", ]
 )
@@ -44,8 +40,6 @@ def context():
     "ci_provider", CI_PROVIDERS, ids=["travis", "gitlab", "none", ]
 )
 def context_combination(
-    use_docker,
-    include_docker_compose,
     log_level,
     worker_port,
     include_schema_registry,
@@ -54,8 +48,6 @@ def context_combination(
 ):
     """Fixture that parametrize the function where it's used."""
     return {
-        "use_docker": use_docker,
-        "include_docker_compose": include_docker_compose,
         "log_level": log_level,
         "worker_port": worker_port,
         "include_schema_registry": include_schema_registry,

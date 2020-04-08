@@ -47,6 +47,8 @@ coverage.xml
 *.cover
 .hypothesis/
 
+.test-docker/
+
 # Translations
 *.mo
 *.pot

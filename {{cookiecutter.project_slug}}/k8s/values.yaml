@@ -48,3 +48,4 @@ worker:
   webPort: {{cookiecutter.worker_port}}
   logLevel: {{cookiecutter.log_level}}
   debug: true
+  storeUri: "memory://"

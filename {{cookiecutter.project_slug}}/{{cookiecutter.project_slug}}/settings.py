@@ -1,20 +1,19 @@
 import ssl
 from logging.config import dictConfig
 
+DEBUG = True
+
 SIMPLE_SETTINGS = {
     "OVERRIDE_BY_ENV": True,
     "CONFIGURE_LOGGING": True,
-    "REQUIRED_SETTINGS": ("KAFKA_BOOTSTRAP_SERVER",),
+    "REQUIRED_SETTINGS": ("KAFKA_BOOTSTRAP_SERVER", "STORE_URI"),
 }
 
-# The following variables can be ovirriden from ENV
-KAFKA_BOOTSTRAP_SERVER = "kafka://kafka:9092"
+KAFKA_BOOTSTRAP_SERVER = "kafka://localhost:29092"
 # SCHEMA_REGISTRY_URL = "http://schema-registry:8081"
-{% if cookiecutter.include_rocksdb.lower() == "y" %}
-STORE_URI = "rocksdb://"
-{% else %}
+
+# Faust storage
 STORE_URI = "memory://"
-{% endif %}
 
 LOGGING = dictConfig(
     {
@@ -28,7 +27,6 @@ LOGGING = dictConfig(
 
 TOPIC_ALLOW_DECLARE = True
 TOPIC_DISABLE_LEADER = False
-
 
 SSL_ENABLED = False
 SSL_CONTEXT = None

@@ -1,25 +1,5 @@
 version: '3'
 services:
-  {{cookiecutter.project_slug}}:
-    tty: true
-    build: .
-    entrypoint: "./scripts/wait-for-services"
-    command: "./scripts/run"
-    depends_on:
-      - zookeeper
-      - kafka {% if cookiecutter.include_schema_registry.lower() == "y" %}
-      - schema-registry {% endif %}
-    environment:
-      - WORKER_PORT={{cookiecutter.worker_port}}
-      - KAFKA_BOOTSTRAP_SERVER=kafka://kafka:9092
-      - KAFKA_BOOSTRAP_SERVER_NAME=kafka
-      - KAFKA_BOOSTRAP_SERVER_PORT=9092 {% if cookiecutter.include_schema_registry.lower() == "y" %}
-      - SCHEMA_REGISTRY_URL=http://schema-registry:8081
-      - SCHEMA_REGISTRY_SERVER=schema-registry
-      - SCHEMA_REGISTRY_SERVER_PORT=8081 {% endif %}
-    ports:
-      - "8084:80"
-      - "8000:8000"
   zookeeper:
     image: "confluentinc/cp-zookeeper"
     hostname: zookeeper

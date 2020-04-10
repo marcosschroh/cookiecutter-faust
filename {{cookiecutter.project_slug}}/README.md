@@ -107,7 +107,7 @@ Useful ENVIRONMENT variables that you may change:
 | WORKER_PORT | Worker port | `6066` |
 | KAFKA_BOOTSTRAP_SERVER | Kafka servers | `kafka://localhost:29092` |
 | KAFKA_BOOSTRAP_SERVER_NAME | Kafka server name| `kafka` |
-| KAFKA_BOOSTRAP_SERVER_PORT | Kafka server port | `9092` |
+| KAFKA_BOOSTRAP_SERVER_PORT | Kafka server port | `29092` |
 | SCHEMA_REGISTRY_SERVER | Schema registry server name | `schema-registry` |
 | SCHEMA_REGISTRY_SERVER_PORT | Schema registry server port | `8081` |
 | SCHEMA_REGISTRY_URL | Schema Registry Server url | `http://schema-registry:8081` |

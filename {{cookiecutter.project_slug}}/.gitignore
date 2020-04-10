@@ -146,21 +146,13 @@ Session.vim
 
 # Auto-generated tag files
 tags
-{% if cookiecutter.use_docker == 'n' %}
 
 ### VirtualEnv template
 # Virtualenv
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
 pyvenv.cfg
 pip-selfcheck.json
 .env
-{% endif %}
 
 .pytest_cache/
 
-{% if cookiecutter.use_docker == 'y' %}
 .ipython/
-{%- endif %}

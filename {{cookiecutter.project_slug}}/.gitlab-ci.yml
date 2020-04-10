@@ -10,7 +10,7 @@ before_script:
   - apk add --no-cache py-pip
   # temporary fix
   - pip install --quiet docker-compose~=1.23.0
-  - pip install -r requirements/requirements.txt -r requirements/test_requirements.txt
+  - pip install -r requirements/test.txt
 
 stages:
   - test

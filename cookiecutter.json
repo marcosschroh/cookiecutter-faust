@@ -11,8 +11,6 @@
       "Apache Software License 2.0",
       "Not open source"
     ],
-    "use_docker": "y",
-    "include_docker_compose": "y",
     "worker_port": 6066,
     "log_level": [
       "INFO",
@@ -22,7 +20,7 @@
       "DEBUG",
       "NOTSET"
     ],
-    "include_schema_registry": "y",
+    "include_schema_registry": "n",
     "include_rocksdb": "y",
     "ci_provider": [
       "travis",

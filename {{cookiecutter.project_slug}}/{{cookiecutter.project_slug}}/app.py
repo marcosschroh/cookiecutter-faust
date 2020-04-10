@@ -4,6 +4,7 @@ from simple_settings import settings
 
 app = faust.App(
     id=1,
+    debug=settings.DEBUG,
     autodiscover=["page_views"],
     broker=settings.KAFKA_BOOTSTRAP_SERVER,
     store=settings.STORE_URI,

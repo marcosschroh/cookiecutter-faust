@@ -19,9 +19,7 @@ WORKDIR /{{cookiecutter.project_slug}}/
 
 COPY . /{{cookiecutter.project_slug}}
 
-RUN make install
-
-RUN ls
+RUN make install-production
 
 {% if cookiecutter.include_rocksdb.lower() == "y" %}
 RUN yes Y | apt-get remove --purge git libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev

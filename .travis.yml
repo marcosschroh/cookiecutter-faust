@@ -8,6 +8,10 @@ before_install:
   - docker-compose -v
   - docker -v
 
+
+env:
+  - ENVIRONMENT=CI
+
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 # Because we run the test with pytest==4.4.1 we need pluggy>=0.9
 # Would be easier to run travis with tox but is not trivial. 
@@ -19,4 +23,5 @@ matrix:
       python: 3.7
       script: ./scripts/test
     - name: Test Docker image
+      python: 3.7
       script: ./scripts/test_docker

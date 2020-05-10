@@ -48,6 +48,30 @@ SIMPLE_SETTINGS = {
 
 # The following variables can be ovirriden from ENV
 KAFKA_BOOTSTRAP_SERVER = "kafka://localhost:29092"
+
+TOPIC_ALLOW_DECLARE = True
+TOPIC_DISABLE_LEADER = False
+
+SSL_ENABLED = False
+SSL_CONTEXT = None
+
+if SSL_ENABLED:
+    # file in pem format containing the client certificate, as well as any ca certificates
+    # needed to establish the certificate’s authenticity
+    KAFKA_SSL_CERT = None
+
+    # filename containing the client private key
+    KAFKA_SSL_KEY = None
+
+    # filename of ca file to use in certificate verification
+    KAFKA_SSL_CABUNDLE = None
+
+    # password for decrypting the client private key
+    SSL_KEY_PASSWORD = None
+
+    SSL_CONTEXT = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH, cafile=KAFKA_SSL_CABUNDLE)
+
+    SSL_CONTEXT.load_cert_chain(KAFKA_SSL_CERT, keyfile=KAFKA_SSL_KEY, password=SSL_KEY_PASSWORD)
 ```
 
 The settings also include a basic logging configuration:

@@ -11,7 +11,6 @@ mypy
 
 # Testing
 # ------------------------------------------------------------------------------
-pytest
+pytest==5.4.2
 pytest_cases
 pytest-cookies
-pytest-asyncio

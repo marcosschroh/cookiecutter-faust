@@ -130,7 +130,7 @@ Useful Commands
 | `make stop-kafka-cluster`      |  Stop kafka cluster, clean containers and network         |     ---         | |
 | `make install`      |  Install local requirements         |     ---         | |
 | `make start-app`      |  Start Faust application        |     ---         | |
-| `make bash service={the-service}`      |  Access to container         |   service={project-name}           | `make bash` |
+| `make bash service={the-service}`      |  Access to container         |   service=kafka           | `make bash` |
 | `make list-topics`      |      List topics     |    ---          | |
 | `make create-topic replication-factor={replication-factor} --partitions={number-of-partitions topic-name={your-topic-name}`      |  Create topic         |  replication-factor=1 partitions=1.           |  `make create-topic topic-name=test-topic`|
 | `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
@@ -152,6 +152,30 @@ SIMPLE_SETTINGS = {
 
 # The following variables can be ovirriden from ENV
 KAFKA_BOOTSTRAP_SERVER = "kafka://localhost:29092"
+
+TOPIC_ALLOW_DECLARE = True
+TOPIC_DISABLE_LEADER = False
+
+SSL_ENABLED = False
+SSL_CONTEXT = None
+
+if SSL_ENABLED:
+    # file in pem format containing the client certificate, as well as any ca certificates
+    # needed to establish the certificate’s authenticity
+    KAFKA_SSL_CERT = None
+
+    # filename containing the client private key
+    KAFKA_SSL_KEY = None
+
+    # filename of ca file to use in certificate verification
+    KAFKA_SSL_CABUNDLE = None
+
+    # password for decrypting the client private key
+    SSL_KEY_PASSWORD = None
+
+    SSL_CONTEXT = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH, cafile=KAFKA_SSL_CABUNDLE)
+
+    SSL_CONTEXT.load_cert_chain(KAFKA_SSL_CERT, keyfile=KAFKA_SSL_KEY, password=SSL_KEY_PASSWORD)
 ```
 
 The settings also include a basic logging and store configuration:
@@ -181,9 +205,6 @@ LOGGING = {
         },
     },
 }
-
-TOPIC_ALLOW_DECLARE = os.getenv("TOPIC_ALLOW_DECLARE", True)
-TOPIC_DISABLE_LEADER = os.getenv("TOPIC_DISABLE_LEADER", False)
 ```
 
 Docker and Docker Compose

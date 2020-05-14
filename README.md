@@ -1,31 +1,31 @@
-Cookiecutter Faust
-===================
+# Cookiecutter Faust
 
 [![Build Status](https://travis-ci.org/marcosschroh/cookiecutter-faust.svg?branch=master)](https://travis-ci.org/marcosschroh/cookiecutter-faust)
 [![GitHub license](https://img.shields.io/github/license/marcosschroh/cookiecutter-faust.svg)](https://github.com/marcosschroh/cookiecutter-faust/blob/feature/add-license-and-remove-network-after-clean/LICENSE)
 
-Table of Contents
------------------
+## Table of Contents
 
   - [Features](#features)
   - [Usage](#usage)
   - [Useful Commands](#useful-commands)
   - [Settings](#settings)
   - [Docker and Docker Compose](#docker-and-docker-compose)
-  - [Run tests](#run-tests)
+  - [Development](#development)
 
-Features
---------
+### Features
 
 - Python 3.7+
-- Docker and docker-compose for development
+- Docker-compose for local development that builds a `kafka` cluster
 - Useful commands included in Makefile
 - Kubernetes manifests included
+- CI generated (Gitlab/Travis)
+- Settings that include logging, minimal faust and SSL configuration
+- Faust agent example with a test case
+- Option to use `rocksDB` as a faust data store
 
-Usage
------
+### Usage
 
-Let's pretend you want to create a Faust project called "super faust".
+Let's pretend you want to create a Faust project called `super faust`
 
 First, install `Cookiecutter`
 
@@ -121,8 +121,7 @@ git push -u origin master
 
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
 
-Useful Commands
----------------
+### Useful Commands
 
 |Command|Description| Default values|Example|
 |-------|------------|--------------|-------|
@@ -136,8 +135,7 @@ Useful Commands
 | `make send-page-view-event payload='{a payload}'`| Send event to a page view application | -- | `make send-page-view-event payload='{"id": "foo", "user": "bar"}'` |
 | `make list-agents`| List faust agents| --- | |
 
-Settings
---------
+### Settings
 
 Settings are created based on [local-settings](https://github.com/drgarcia1986/simple-settings) package.
 
@@ -207,8 +205,7 @@ LOGGING = {
 }
 ```
 
-Docker and Docker Compose
--------------------------
+### Docker and Docker Compose
 
 The `Dockerfile` is based on  `python:3.7-slim`. The example is [here](https://github.com/marcosschroh/cookiecutter-faust/blob/master/%7B%7Bcookiecutter.project_slug%7D%7D/Dockerfile)
 
@@ -227,8 +224,7 @@ Useful `ENVIRONMENT` variables that you may change:
 | SCHEMA_REGISTRY_SERVER_PORT | Schema registry server port | `8081` |
 | SCHEMA_REGISTRY_URL | Schema Registry Server url | `http://schema-registry:8081` |
 
-Development
------------
+### Development
 
 Run tests:
 

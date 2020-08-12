@@ -29,8 +29,8 @@ fi
 docker-compose up -d
 
 # Listing the agents to prove that the project generated is working
-export KAFKA_BOOSTRAP_SERVER_NAME=localhost
-export KAFKA_BOOSTRAP_SERVER_PORT=29092
+export KAFKA_BOOTSTRAP_SERVER_NAME=localhost
+export KAFKA_BOOTSTRAP_SERVER_PORT=29092
 
 ./scripts/wait-for-services
 

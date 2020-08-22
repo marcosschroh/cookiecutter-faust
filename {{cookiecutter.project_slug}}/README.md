@@ -140,7 +140,7 @@ Run tests
 ---------
 
 ```sh
-./scripts/test.sh
+make install-test && ./scripts/test
 ```
 
 Lint code

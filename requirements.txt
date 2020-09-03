@@ -11,6 +11,6 @@ mypy
 
 # Testing
 # ------------------------------------------------------------------------------
-pytest==5.4.2
+pytest
 pytest_cases
 pytest-cookies

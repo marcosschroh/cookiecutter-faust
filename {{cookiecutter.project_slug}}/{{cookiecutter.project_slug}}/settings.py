@@ -20,7 +20,13 @@ LOGGING = dictConfig(
         "version": 1,
         "disable_existing_loggers": False,
         "formatters": {"default": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"}},
-        "handlers": {"console": {"level": "{{cookiecutter.log_level}}", "class": "logging.StreamHandler", "formatter": "default",}},
+        "handlers": {
+            "console": {
+                "level": "{{cookiecutter.log_level}}",
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+            }
+        },
         "loggers": {"page_views": {"handlers": ["console"], "level": "{{cookiecutter.log_level}}"}},
     }
 )

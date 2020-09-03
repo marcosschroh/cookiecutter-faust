@@ -9,5 +9,5 @@ export PYTHONPATH={{cookiecutter.project_slug}}
 export SIMPLE_SETTINGS=settings
 
 ${PREFIX}pytest ${1-"./tests"} ${2}
-${PREFIX}black {{cookiecutter.project_slug}} tests/ --check
+${PREFIX}black {{cookiecutter.project_slug}} tests/ --check --diff
 ${PREFIX}flake8 {{cookiecutter.project_slug}} tests/

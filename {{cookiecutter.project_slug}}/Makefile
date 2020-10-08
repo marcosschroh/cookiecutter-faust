@@ -9,16 +9,16 @@ PYTHON?=python3.7
 
 # Installation
 install:
-	$(PYTHON) -m venv venv
-	venv/bin/pip install -U pip -r requirements/base.txt
+	$(PYTHON) -m venv ./venv
+	./venv/bin/pip install -U pip -r requirements/base.txt
 
 install-test:
-	$(PYTHON) -m venv venv
-	venv/bin/pip install -U pip -r requirements/test.txt
+	$(PYTHON) -m venv ./venv
+	./venv/bin/pip install -U pip -r requirements/test.txt
 
 install-production:
-	$(PYTHON) -m venv venv
-	venv/bin/pip install -U pip -r requirements/production.txt
+	$(PYTHON) -m venv ./venv
+	./venv/bin/pip install -U pip -r requirements/production.txt
 
 bash:
 	docker-compose run --user=$(shell id -u) ${service} bash

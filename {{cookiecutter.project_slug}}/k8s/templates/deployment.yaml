@@ -28,7 +28,7 @@ spec:
             runAsUser: 1000
           ports:
             - name: http
-              containerPort: {{ '{{ .Values.worker.web_port }}' }}
+              containerPort: {{ '{{ .Values.worker.webPort }}' }}
               protocol: TCP
           envFrom:
             - configMapRef:

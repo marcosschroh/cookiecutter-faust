@@ -22,6 +22,7 @@
 - Settings that include logging, minimal Faust and SSL configuration
 - Faust agent example with a test case
 - Option to use `rocksDB` as a Faust data store
+- Uses the active [faust-streaming](https://github.com/faust-streaming/faust) fork of the original [faust](https://github.com/robinhood/faust)
 
 ### Usage
 
